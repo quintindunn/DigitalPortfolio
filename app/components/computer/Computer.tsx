@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "@/app/components/computer/Computer.module.css";
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 
 interface ComputerContextType {
     open: boolean;
