@@ -23,6 +23,7 @@
 }
 
 .flipCardInner {
+    padding: 0;
     position: relative;
     text-align: center;
     transition: transform .5s;
@@ -40,6 +41,11 @@
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
     perspective: 8000px;
+}
+
+.flipCardFront > img {
+    margin: 0 auto;
+    height: 96px;
 }
 
 .flipCardBack {
