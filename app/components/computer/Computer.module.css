@@ -1,19 +1,6 @@
-.computer {
-    position: fixed;
-    width: 92.5vw;
-    height: 92.5vh;
-    top: 3.75vh;
-    left: 3.75vw;
-    background: #000000;
-    opacity: 1;
-}
-
-.computer > canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+:root {
+    --computer-width: 92.5vw;
+    --computer-height: 92.5vh;
 }
 
 .computer > div[id="close"] {
@@ -24,5 +11,49 @@
     cursor: pointer;
     font-size: 1vw;
     font-weight: bold;
+    z-index: 1000;
+}
+
+.computer {
+    position: fixed;
+    width: var(--computer-width);
+    height: var(--computer-height);
+    top: calc((100vh - var(--computer-height)) / 2);
+    left: calc((100vw - var(--computer-width)) / 2);
+    background: #000000;
+    opacity: 1;
     z-index: 100;
+}
+
+.taskbar {
+    width: 100%;
+    height: 5vh;
+    border: 1px solid white;
+    position: absolute;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.taskbarLeft {
+    position: absolute;
+    left: 0;
+}
+
+.taskbarRight {
+    position: absolute;
+    right: 0;
+}
+
+.taskbarStart {
+
+}
+
+.taskbarStatus {
+
+}
+
+.taskbarTime {
+
 }

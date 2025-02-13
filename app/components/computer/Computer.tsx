@@ -31,6 +31,27 @@ export function useComputer() {
     return context;
 }
 
+function TaskBar() {
+    return (
+        <div className={styles.taskbar}>
+            <div className={styles.taskbarLeft}>
+                <div className={styles.taskbarStart}>
+                    <span>IM</span>
+                    <p>Start</p>
+                </div>
+                <div className={styles.taskbarStatus}>
+                    <p>Welcome</p>
+                </div>
+            </div>
+            <div className={styles.taskbarRight}>
+                <div className={styles.taskbarTime}>
+                    <p>2:38 PM</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function Computer() {
     const {open, setOpen} = useComputer();
     function close() {
@@ -41,6 +62,9 @@ export default function Computer() {
         <div className={styles.computer}>
             <div id="close">
                 <button type="button" onClick={close}>X</button>
+            </div>
+            <div>
+                <TaskBar />
             </div>
         </div>
     );

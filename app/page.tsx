@@ -30,11 +30,11 @@ export default function Home() {
               <Hobbies />
               <Spacer size={100} />
               <ComputerProvider>
-                  <TimeMachine />
-                  <Computer />
+                <TimeMachine />
+                <Spacer size={100} />
+                <Contact />
+                <Computer />
               </ComputerProvider>
-              <Spacer size={100} />
-              <Contact />
           </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
