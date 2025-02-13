@@ -3,7 +3,7 @@
     height: 50vh;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #171717;
+    background-color: var(--background-card);
 
     display: flex;
     flex-direction: column;
@@ -11,8 +11,8 @@
 }
 
 .projectCard:hover {
-    background-color: #202020;
+    background-color: var(--background-hover);
     transform: scale(1.025);
     transition: transform .25s;
-    border-left: 1px solid aliceblue;
+    border-left: 1px solid var(--card-hover-border);
 }

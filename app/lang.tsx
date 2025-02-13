@@ -11,6 +11,10 @@ const en = {
         s2: "Professional",
         s3: "Tinkerer"
     },
+    about: {
+        subheading: "About",
+        content: "I am an 18-year-old software developer based in New York, and have been coding since I was 8. Over the years, I have learned a wide range of programming languages and frameworks. While I prioritize backend development, I am also have experience in frontend development. My primary focus is on building web applications, and I enjoy contributing to open-source projects, using my skills to create efficient, scalable, and high-performance products.",
+    },
     skills: {
         subheading: "Skills",
         python: "Python",
@@ -39,6 +43,10 @@ const en = {
         thread_art: {
             name: "Thread Art",
             description: "An implementation of an algorithm to convert an input image into thread art"
+        },
+        mosart: {
+            name: "Mosart (closed source)",
+            description: "A web application to create mosaic artwork out of a collage of pictures"
         }
     },
     hobbies: {
