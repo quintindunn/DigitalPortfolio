@@ -1,0 +1,20 @@
+.profilePicture {
+    padding-top: 1vh;
+    animation: ScaleSpin 0.5s ease-in-out forwards;
+}
+
+.profilePicture > img:hover {
+    transform: scale(1.05);
+    transition: transform .3s ease-in-out;
+}
+
+@keyframes ScaleSpin {
+    from {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1.1) rotate(360deg);
+        opacity: 1;
+    }
+}

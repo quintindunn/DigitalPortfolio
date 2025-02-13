@@ -5,6 +5,7 @@ import SocialLinks from "@/app/components/SocialLinks";
 import Spacer from "@/app/components/Spacer";
 
 import lang from "@/app/lang";
+import styles from "@/app/components/Heading.module.css"
 
 export default function Heading(props: { name: string }) {
     return (
@@ -26,7 +27,7 @@ export default function Heading(props: { name: string }) {
                     <Spacer size={20} />
                     <SocialLinks />
                 </div>
-                <div>
+                <div className={styles.profilePicture}>
                     <Image src={"/threadart.png"} alt={"👋"} width={256} height={256}/>
                 </div>
             </div>
