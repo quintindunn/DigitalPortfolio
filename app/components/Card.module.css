@@ -1,8 +1,7 @@
 .projectCard {
-    width: 350px;
-    height: 50vh;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: 18.2vw;
+    min-height: 50vh;
+    padding: .9vw;
     background-color: var(--background-card);
 
     display: flex;

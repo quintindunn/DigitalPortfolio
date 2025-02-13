@@ -38,7 +38,7 @@ const en = {
         },
         quick_info: {
             name: "Quick Info",
-            description: "A Windows desktop tool to make it easier to find network info for developers",
+            description: "A Windows desktop tool to make it easier to find network info for developers.",
         },
         thread_art: {
             name: "Thread Art",

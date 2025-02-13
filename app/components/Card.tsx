@@ -9,8 +9,10 @@ export default function Card(props: {name: string, link?: string, img_src: strin
                 <Image
                     src={props.img_src}
                     alt={props.name}
-                    width={256}
-                    height={256}
+                    layout="responsive"
+                    width={800} // Set based on your image's aspect ratio
+                    height={800} // Adjust accordingly
+                    className="w-full h-auto object-cover"
                 />
             </div>
             <div className={"pl-5 pr-5"}>
