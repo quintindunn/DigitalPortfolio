@@ -12,7 +12,7 @@ export default function Heading(props: { name: string }) {
         <div>
             <div style={{ width: "4rem", height: "4rem", position: "relative" }}>
                 <Image
-                    className={"inline"}
+                    className={`inline ${styles.wave}`}
                     src={"waving-hand-svgrepo-com.svg"}
                     alt={"👋"}
                     fill
