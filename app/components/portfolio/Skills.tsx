@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 
-import Subheading from "@/app/components/Subheading";
+import Subheading from "@/app/components/portfolio/Subheading";
 
 import lang from "@/app/lang"
-import styles from "@/app/components/Skills.module.css";
+import styles from "@/app/components/portfolio/Skills.module.css";
 import {useEffect, useState} from "react";
 
 

@@ -1,13 +1,15 @@
-import Heading from "@/app/components/Heading"
-import SocialLinks from "@/app/components/SocialLinks"
-import Projects from "@/app/components/Projects"
-import Spacer from "@/app/components/Spacer"
-import Skills from "@/app/components/Skills"
-import Hobbies from "@/app/components/Hobbies"
-import Contact from "@/app/components/Contact"
-import About from "@/app/components/About"
+import Heading from "@/app/components/portfolio/Heading"
+import SocialLinks from "@/app/components/portfolio/SocialLinks"
+import Projects from "@/app/components/portfolio/Projects"
+import Spacer from "@/app/components/portfolio/Spacer"
+import Skills from "@/app/components/portfolio/Skills"
+import Hobbies from "@/app/components/portfolio/Hobbies"
+import Contact from "@/app/components/portfolio/Contact"
+import About from "@/app/components/portfolio/About"
 
 import lang from "@/app/lang"
+import TimeMachine from "@/app/components/portfolio/TimeMachine";
+import Computer, {ComputerProvider} from "@/app/components/computer/Computer";
 
 export default function Home() {
   return (
@@ -26,6 +28,11 @@ export default function Home() {
               {/*<Experience />*/}
               <Spacer size={100} />
               <Hobbies />
+              <Spacer size={100} />
+              <ComputerProvider>
+                  <TimeMachine />
+                  <Computer />
+              </ComputerProvider>
               <Spacer size={100} />
               <Contact />
           </div>

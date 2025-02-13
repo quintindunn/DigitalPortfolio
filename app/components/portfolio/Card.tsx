@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import styles from "@/app/components/Card.module.css";
+import styles from "@/app/components/portfolio/Card.module.css";
 
 export default function Card(props: {name: string, link?: string, img_src: string, description: string}) {
     const content = (

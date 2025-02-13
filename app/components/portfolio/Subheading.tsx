@@ -1,4 +1,4 @@
-import styles from "@/app/components/Subheading.module.css"
+import styles from "@/app/components/portfolio/Subheading.module.css"
 
 export default function Subheading(props: {name: string}) {
     return (
