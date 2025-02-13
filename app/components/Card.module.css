@@ -1,0 +1,15 @@
+.projectCard {
+    width: 350px;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #171717;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.projectCard:hover {
+    background-color: #202020;
+}

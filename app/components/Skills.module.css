@@ -1,0 +1,17 @@
+.skill {
+    background: #171717;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+    aspect-ratio: 1/1;
+}
+
+.skill:hover {
+    background: #202020;
+}
+
+.skill > img:hover {
+    transform: scale(1.2);
+    transition: transform .25s;
+}
