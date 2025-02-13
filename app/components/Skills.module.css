@@ -1,5 +1,5 @@
 .skill {
-    background: #171717;
+    background: var(--background);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
 }
 
 .skill:hover {
-    background: #202020;
+    background: var(--background-hover);
 }
 
 .skill:hover {
