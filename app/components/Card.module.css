@@ -1,6 +1,6 @@
 .projectCard {
     width: 350px;
-    height: auto;
+    height: 50vh;
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #171717;
@@ -14,4 +14,5 @@
     background-color: #202020;
     transform: scale(1.025);
     transition: transform .25s;
+    border-left: 1px solid aliceblue;
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import MagicText from "./MagicText";
 
 export default function Heading(props: { name: string }) {
     return (
@@ -15,7 +16,7 @@ export default function Heading(props: { name: string }) {
             <h1 className={"inline font-bold text-8xl"}>I&apos;m {props.name}</h1>
             <div className={"text-4xl indent-5 font-light"}>
                 <p>Software Engineer</p>
-                <p>Professional Tinkerer</p>
+                <p>Professional <MagicText text={"Tinkerer"}/></p>
             </div>
         </div>
     );
