@@ -5,6 +5,7 @@ import Spacer from "@/app/components/Spacer"
 import Skills from "@/app/components/Skills"
 import Hobbies from "@/app/components/Hobbies"
 import Contact from "@/app/components/Contact"
+import About from "@/app/components/About"
 
 import lang from "@/app/lang"
 
@@ -15,6 +16,8 @@ export default function Home() {
           <Heading name={lang.heading.name}/>
           <Spacer size={500} />
 
+          <About />
+          <Spacer size={100} />
           <Skills />
           <Spacer size={100} />
           <Projects />
