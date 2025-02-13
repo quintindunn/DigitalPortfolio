@@ -12,4 +12,6 @@
 
 .projectCard:hover {
     background-color: #202020;
+    transform: scale(1.025);
+    transition: transform .25s;
 }

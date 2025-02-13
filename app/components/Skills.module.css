@@ -11,7 +11,7 @@
     background: #202020;
 }
 
-.skill > img:hover {
+.skill:hover {
     transform: scale(1.2);
     transition: transform .25s;
 }
