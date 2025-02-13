@@ -14,5 +14,5 @@
     background-color: var(--background-hover);
     transform: scale(1.025);
     transition: transform .25s;
-    border-left: 1px solid aliceblue;
+    border-left: 1px solid var(--card-hover-border);
 }
