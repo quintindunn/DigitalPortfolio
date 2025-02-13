@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Subheading from "./Subheading";
-import styles from "./Skills.module.css"
+
+import Subheading from "@/app/components/Subheading";
 
 import lang from "@/app/lang"
+import styles from "@/app/components/Skills.module.css";
 
 function Skill(props: {alt: string, img_src: string}) {
     return (

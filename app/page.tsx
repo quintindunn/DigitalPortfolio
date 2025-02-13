@@ -1,16 +1,12 @@
-import Heading from "./components/Heading"
-import SocialLinks from "./components/SocialLinks"
-import Projects from "./components/Projects"
-import Spacer from "./components/Spacer"
-import Skills from "./components/Skills"
-import Hobbies from "./components/Hobbies"
-import Contact from "./components/Contact"
+import Heading from "@/app/components/Heading"
+import SocialLinks from "@/app/components/SocialLinks"
+import Projects from "@/app/components/Projects"
+import Spacer from "@/app/components/Spacer"
+import Skills from "@/app/components/Skills"
+import Hobbies from "@/app/components/Hobbies"
+import Contact from "@/app/components/Contact"
 
-import lang from "./lang"
-
-export const metadata = {
-    title: lang.metadata.title,
-}
+import lang from "@/app/lang"
 
 export default function Home() {
   return (

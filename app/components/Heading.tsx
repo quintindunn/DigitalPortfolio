@@ -1,9 +1,10 @@
 import Image from "next/image";
+
 import MagicText from "@/app/components/MagicText";
 import SocialLinks from "@/app/components/SocialLinks";
 import Spacer from "@/app/components/Spacer";
 
-import lang from "@/app/lang"
+import lang from "@/app/lang";
 
 export default function Heading(props: { name: string }) {
     return (

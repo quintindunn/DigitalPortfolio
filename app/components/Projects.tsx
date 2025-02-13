@@ -1,7 +1,7 @@
-import Card from "@/app/components/Card"
-import Subheading from "@/app/components/Subheading"
+import Card from "@/app/components/Card";
+import Subheading from "@/app/components/Subheading";
 
-import lang from "@/app/lang"
+import lang from "@/app/lang";
 
 export default function Projects() {
     return (

@@ -1,7 +1,8 @@
 const en = {
     lang: "en",
     metadata: {
-        title: "Quintin Dunn - Portfolio"
+        title: "Quintin Dunn - Portfolio",
+        description: "My digital portfolio",
     },
     heading: {
         intro: "I'm",

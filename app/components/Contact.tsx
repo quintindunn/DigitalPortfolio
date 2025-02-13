@@ -1,7 +1,7 @@
-import Subheading from "./Subheading";
-import styles from "./Contact.module.css"
+import Subheading from "@/app/components/Subheading";
 
-import lang from "@/app/lang"
+import lang from "@/app/lang";
+import styles from "@/app/components/Contact.module.css";
 
 function Email(props: {email: string}) {
     return (
