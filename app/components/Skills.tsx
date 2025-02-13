@@ -5,7 +5,16 @@ import styles from "./Skills.module.css"
 function Skill(props: {alt: string, img_src: string}) {
     return (
         <div className={styles.skill}>
-            <Image src={props.img_src} alt={props.alt} width={86} height={86} />
+            <div className={styles.flipCard}>
+                <div className={styles.flipCardInner}>
+                    <div className={styles.flipCardFront}>
+                        <Image src={props.img_src} alt={props.alt} width={86} height={86} />
+                    </div>
+                    <div className={styles.flipCardBack}>
+                        <h1 className={"font-semibold"}>{props.alt}</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
@@ -13,10 +22,10 @@ function Skill(props: {alt: string, img_src: string}) {
 export default function Skills() {
     return (
         <div id={"skills"}>
-                <Subheading name={"Skills"}/>
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-                        <Skill alt={"Python 3"} img_src={"/skills/python.png"} />
-                        <Skill alt={"Django"} img_src={"/skills/django.png"}/>
+            <Subheading name={"Skills"}/>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+                <Skill alt={"Python 3"} img_src={"/skills/python.png"}/>
+                <Skill alt={"Django"} img_src={"/skills/django.png"}/>
                         <Skill alt={"Flask"} img_src={"/skills/flask.png"}/>
                         <Skill alt={"Selenium"} img_src={"/skills/selenium.png"}/>
                         <Skill alt={"PyGame"} img_src={"/skills/pygame.png"}/>
