@@ -2,6 +2,8 @@ import Image from "next/image";
 import Subheading from "./Subheading";
 import styles from "./Skills.module.css"
 
+import lang from "@/app/lang"
+
 function Skill(props: {alt: string, img_src: string}) {
     return (
         <div className={styles.skill}>
@@ -22,21 +24,21 @@ function Skill(props: {alt: string, img_src: string}) {
 export default function Skills() {
     return (
         <div id={"skills"}>
-            <Subheading name={"Skills"}/>
+            <Subheading name={lang.skills.subheading}/>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-                <Skill alt={"Python 3"} img_src={"/skills/python.png"}/>
-                <Skill alt={"Django"} img_src={"/skills/django.png"}/>
-                        <Skill alt={"Flask"} img_src={"/skills/flask.png"}/>
-                        <Skill alt={"Selenium"} img_src={"/skills/selenium.png"}/>
-                        <Skill alt={"PyGame"} img_src={"/skills/pygame.png"}/>
-                        <Skill alt={"Postgres"} img_src={"/skills/postgres.png"}/>
-                        <Skill alt={"JavaScript"} img_src={"/skills/javascript.png"}/>
-                        <Skill alt={"TypeScript"} img_src={"/skills/typescript.png"}/>
-                        <Skill alt={"C"} img_src={"/skills/c.png"}/>
-                        <Skill alt={"C++"} img_src={"/skills/cpp.png"}/>
-                        <Skill alt={"Java"} img_src={"/skills/java.png"}/>
-                        <Skill alt={"Linux"} img_src={"/skills/linux.png"}/>
-                </div>
+                <Skill alt={lang.skills.python} img_src={"/skills/python.png"}/>
+                <Skill alt={lang.skills.django} img_src={"/skills/django.png"}/>
+                <Skill alt={lang.skills.flask} img_src={"/skills/flask.png"}/>
+                <Skill alt={lang.skills.selenium} img_src={"/skills/selenium.png"}/>
+                <Skill alt={lang.skills.pygame} img_src={"/skills/pygame.png"}/>
+                <Skill alt={lang.skills.postgresql} img_src={"/skills/postgres.png"}/>
+                <Skill alt={lang.skills.javascript} img_src={"/skills/javascript.png"}/>
+                <Skill alt={lang.skills.typescript} img_src={"/skills/typescript.png"}/>
+                <Skill alt={lang.skills.c} img_src={"/skills/c.png"}/>
+                <Skill alt={lang.skills.cpp} img_src={"/skills/cpp.png"}/>
+                <Skill alt={lang.skills.java} img_src={"/skills/java.png"}/>
+                <Skill alt={lang.skills.linux} img_src={"/skills/linux.png"}/>
+            </div>
         </div>
     );
 }

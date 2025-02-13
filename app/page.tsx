@@ -6,11 +6,17 @@ import Skills from "./components/Skills"
 import Hobbies from "./components/Hobbies"
 import Contact from "./components/Contact"
 
+import lang from "./lang"
+
+export const metadata = {
+    title: lang.metadata.title,
+}
+
 export default function Home() {
   return (
     <div className="scrollbar-hide grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-          <Heading name={"Quintin Dunn"}/>
+          <Heading name={lang.heading.name}/>
           <Spacer size={500} />
 
           <Skills />

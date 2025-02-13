@@ -1,14 +1,16 @@
-import Card from "./Card"
-import Subheading from "./Subheading"
+import Card from "@/app/components/Card"
+import Subheading from "@/app/components/Subheading"
+
+import lang from "@/app/lang"
 
 export default function Projects() {
     return (
         <div id={"projects"}>
-            <Subheading name={"Selected Works"}/>
+            <Subheading name={lang.selected_work.subheading}/>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Card name={"LapsePy"} link={"https://github.com/quintindunn/lapsepy"} img_src={"/projects/lapsepy.png"} description={"A Python3 API Wrapper for the social media app Lapse."}/>
-                <Card name={"Quick Info"} link={"https://github.com/quintindunn/quickinfo"} img_src={"/projects/quickinfo.png"} description={"A Windows desktop tool to make it easier to find network info for developers"}/>
-                <Card name={"Thread Art"} link={"https://github.com/quintindunn/lapsepy"} img_src={"/projects/threadart.png"} description={"An implementation of an algorithm to convert an input image into thread art"}/>
+                <Card name={lang.selected_work.lapsepy.name} link={"https://github.com/quintindunn/lapsepy"} img_src={"/projects/lapsepy.png"} description={lang.selected_work.lapsepy.description}/>
+                <Card name={lang.selected_work.quick_info.name} link={"https://github.com/quintindunn/quickinfo"} img_src={"/projects/quickinfo.png"} description={lang.selected_work.quick_info.description}/>
+                <Card name={lang.selected_work.thread_art.name} link={"https://github.com/quintindunn/threadart"} img_src={"/projects/threadart.png"} description={lang.selected_work.thread_art.description}/>
             </div>
         </div>
     )

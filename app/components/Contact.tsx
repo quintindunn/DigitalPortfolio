@@ -1,6 +1,8 @@
 import Subheading from "./Subheading";
 import styles from "./Contact.module.css"
 
+import lang from "@/app/lang"
+
 function Email(props: {email: string}) {
     return (
         <span className={styles.email}>
@@ -14,8 +16,8 @@ function Email(props: {email: string}) {
 export default function Contact() {
     return (
         <div>
-            <Subheading name={"Contact"} />
-            <p>You can contact me at <Email email={"dunnquintin07@gmail.com"} /></p>
+            <Subheading name={lang.contact.subheading} />
+            <p>{lang.contact.message} <Email email={lang.contact.email} /></p>
         </div>
     );
 }

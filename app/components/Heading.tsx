@@ -1,7 +1,9 @@
 import Image from "next/image";
-import MagicText from "./MagicText";
+import MagicText from "@/app/components/MagicText";
 import SocialLinks from "@/app/components/SocialLinks";
 import Spacer from "@/app/components/Spacer";
+
+import lang from "@/app/lang"
 
 export default function Heading(props: { name: string }) {
     return (
@@ -15,11 +17,11 @@ export default function Heading(props: { name: string }) {
                     style={{ objectFit: "cover" }}
                 />
             </div>
-            <h1 className={"inline font-bold text-8xl"}>I&apos;m {props.name}</h1>
+            <h1 className={"inline font-bold text-8xl"}>{lang.heading.intro} {props.name}</h1>
             <div className={"grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-16"}>
                 <div className={"text-4xl indent-5 font-light"}>
-                    <p>Software Engineer</p>
-                    <p>Professional <MagicText text={"Tinkerer"}/></p>
+                    <p>{lang.heading.s1}</p>
+                    <p>{lang.heading.s2} <MagicText text={lang.heading.s3}/></p>
                     <Spacer size={20} />
                     <SocialLinks />
                 </div>
