@@ -3,6 +3,16 @@
 import React from "react";
 import styles from "@/app/components/computer/Window.module.css";
 
+const COMPUTER_WIDTH_VW: number = 92.5;
+const COMPUTER_HEIGHT_VW: number = 92.5;
+const TASKBAR_HEIGHT_VW: number = 4;
+const client_width = document.documentElement.clientWidth;
+const client_height = document.documentElement.clientHeight;
+
+function vpToPx(vp: number, client_size: number) {
+    return (vp * client_size) / 100;
+}
+
 interface ComputerWindowProps {
     title: string;
     icon_src: string;
@@ -19,6 +29,7 @@ interface ComputerWindowState {
     move_start_x: number;
     move_start_y: number;
     target_bounding_rect: DOMRect | null;
+    computer_bounding_rect: DOMRect | null;
 }
 
 export default class ComputerWindow extends React.Component<ComputerWindowProps, ComputerWindowState> {
@@ -30,8 +41,20 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
             y: 0,
             move_start_x: 0,
             move_start_y: 0,
-            target_bounding_rect: null
+            target_bounding_rect: null,
+            computer_bounding_rect: null,
         };
+    }
+
+    onLoad = () => {
+        const computer = document.getElementById("computer");
+
+        if (computer === null) {
+            return;
+        }
+
+        this.setState({computer_bounding_rect: computer.getBoundingClientRect()});
+
     }
 
     handleMouseDown = (event: MouseEvent) => {
@@ -45,10 +68,29 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
     };
 
     handleMouseMove = (event: MouseEvent) => {
-        if (this.state.moving) {
+        if (this.state.moving && this.state.computer_bounding_rect !== null) {
+            let x = event.clientX - this.state.move_start_x;
+            if (x < this.state.computer_bounding_rect.left - 70) {
+                x = this.state.computer_bounding_rect.left - 70;
+            }
+            const x_limit = this.state.computer_bounding_rect.right - vpToPx((100-COMPUTER_WIDTH_VW)/2, client_width) - vpToPx(+this.props.width.slice(0, this.props.width.length - 2), client_width)
+            if (x > x_limit) {
+                x = x_limit;
+            }
+
+            let y = event.clientY - this.state.move_start_y;
+            if (y < this.state.computer_bounding_rect.top - 35) {
+                y = this.state.computer_bounding_rect.top - 35;
+            }
+
+            const y_limit = this.state.computer_bounding_rect.bottom - vpToPx((100-COMPUTER_HEIGHT_VW)/2, client_height) - vpToPx(+this.props.height.slice(0, this.props.height.length - 2), client_height) - vpToPx(TASKBAR_HEIGHT_VW, client_height);
+            if (y > y_limit) {
+                y = y_limit;
+            }
+
             this.setState({
-                x: event.clientX - this.state.move_start_x,
-                y: event.clientY - this.state.move_start_y
+                x: x,
+                y: y
             });
         }
     };
@@ -74,6 +116,7 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
         window.addEventListener("mousedown", this.handleMouseDown);
         window.addEventListener("mouseup", this.handleMouseUp);
         window.addEventListener("mousemove", this.handleMouseMove);
+        this.onLoad();
     }
 
     componentWillUnmount() {

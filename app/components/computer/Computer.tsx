@@ -64,7 +64,7 @@ export default function Computer() {
     }
 
     const content = (
-        <div className={styles.computer}>
+        <div className={styles.computer} id={"computer"}>
             <div id="close">
                 <button type="button" onClick={close}>X</button>
             </div>
