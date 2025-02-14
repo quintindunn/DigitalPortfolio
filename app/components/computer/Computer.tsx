@@ -58,7 +58,6 @@ export default function Computer() {
                     <App name={"My Briefcase"} img_src={"/computer/apps/mybriefcase.png"} />
                 </Desktop>
                 <TaskBar />
-                <StartMenu />
             </div>
         </div>
     );
