@@ -62,11 +62,11 @@ function TaskBarStatus(props: { data: string }) {
 }
 
 export default function TaskBar() {
-    const [startMenu, setStartMenu] = React.useState<boolean>(false);
+    const [startMenuState, setStartMenu] = React.useState<boolean>(false);
 
     return (
         <div>
-            {startMenu && <StartMenu/>}
+            {startMenuState && <StartMenu/>}
             <div className={styles.taskbar}>
                 <div className={styles.taskbarLeft}>
                     <TaskBarStart setter={setStartMenu} />
