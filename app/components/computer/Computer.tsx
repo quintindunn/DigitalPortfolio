@@ -52,7 +52,7 @@ function Apps() {
 function Windows() {
     return (
         <>
-            <ComputerWindow title={"My Computer"} icon_src={"/computer/apps/mycomputer.png"} width={"50vw"} height={"30vh"} active={true} />
+            <ComputerWindow title={"My Computer"} icon_src={"/computer/apps/mycomputer.png"} width={"50vw"} height={"30vh"} active={true}></ComputerWindow>
         </>
     );
 }
