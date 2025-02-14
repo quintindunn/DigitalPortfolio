@@ -8,6 +8,7 @@
     border-right: 0.11vw solid black;
     border-bottom: 0.23vh solid black;
     background-color: var(--computer-theme-bg-color);
+    z-index: 1000;
 }
 
 .StartMenuSplash {

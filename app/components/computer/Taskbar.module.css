@@ -8,6 +8,7 @@
     font-weight: bold;
     background-color: var(--computer-theme-bg-color);
     border-top: 1px solid #ffffff;
+    z-index: 10000;
 }
 
 .taskbarLeft, .taskbarRight {

@@ -59,15 +59,21 @@
     height: min-content;
     color: black;
     background-color: rgb(190, 190, 190);
-    border: .01vw solid white;
+    border-top: .01vw solid white;
+    border-left: .01vw solid white;
+    border-right: .01vw solid black;
+    border-bottom: .01vw solid black;
 }
 
 .WindowControlsLeft > img {
     height: calc(var(--computerwindow-controls-height) - 1vh);
+    padding-right: 0.5vw;
 }
 
 .WindowBody {
     position: absolute;
     top: calc(var(--computerwindow-controls-height) + 0.3vh);
     background-color: rgb(190, 190, 190);
+    width: 100%;
+    height: calc(100% - var(--computerwindow-controls-height) - 3px);
 }

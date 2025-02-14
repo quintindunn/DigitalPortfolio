@@ -86,7 +86,7 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
         return (
             <div
                 style={{
-                    zIndex: 1000,
+                    zIndex: 101,
                     width: this.props.width,
                     height: this.props.height,
                     top: this.state.y,
@@ -98,7 +98,7 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
                 <div className={styles.WindowControls} id="#WINDOW-CONTROLS">
                     <div className={styles.WindowControlsLeft} id={"#WINDOW-CONTROLS"}>
                         <img src={this.props.icon_src} alt={this.props.title} id={"#WINDOW-CONTROLS"}/>
-                        <p id={"WINDOW-CONTROLS"}>{this.props.title}</p>
+                        <p id={"#WINDOW-CONTROLS"}>{this.props.title}</p>
                     </div>
                     <div className={styles.WindowControlsRight} id={"#WINDOW-CONTROLS"}>
                         <button type="button" id="#WINDOW-CONTROLS-CLOSE">X</button>

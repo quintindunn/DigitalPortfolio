@@ -6,7 +6,7 @@ import React, {createContext, useContext, useState} from "react";
 import styles from "@/app/components/computer/Computer.module.css";
 import Desktop from "@/app/components/computer/Desktop";
 import App from "@/app/components/computer/App";
-import ComputerWindow from "@/app/components/computer/Window";
+import MyComputer from "@/app/components/computer/apps/MyComputer";
 
 
 interface ComputerContextType {
@@ -52,7 +52,7 @@ function Apps() {
 function Windows() {
     return (
         <>
-            <ComputerWindow title={"My Computer"} icon_src={"/computer/apps/mycomputer.png"} width={"50vw"} height={"30vh"} active={true}></ComputerWindow>
+            <MyComputer />
         </>
     );
 }
