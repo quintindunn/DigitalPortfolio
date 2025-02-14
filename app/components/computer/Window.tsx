@@ -119,10 +119,17 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    handleResize(_event: Event) {
+        client_width = document.documentElement.clientWidth;
+        client_height = document.documentElement.clientHeight;
+    }
+
     componentDidMount() {
         window.addEventListener("mousedown", this.handleMouseDown);
         window.addEventListener("mouseup", this.handleMouseUp);
         window.addEventListener("mousemove", this.handleMouseMove);
+        window.addEventListener("resize", this.handleResize);
         this.onLoad();
     }
 
@@ -130,6 +137,7 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
         window.removeEventListener("mousedown", this.handleMouseDown);
         window.removeEventListener("mouseup", this.handleMouseUp);
         window.removeEventListener("mousemove", this.handleMouseMove);
+        window.removeEventListener("resize", this.handleResize);
     }
 
     render() {
