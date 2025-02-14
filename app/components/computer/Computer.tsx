@@ -6,6 +6,7 @@ import React, {createContext, useContext, useState} from "react";
 import styles from "@/app/components/computer/Computer.module.css";
 import Desktop from "@/app/components/computer/Desktop";
 import App from "@/app/components/computer/App";
+import StartMenu from "@/app/components/computer/StartMenu";
 
 
 interface ComputerContextType {

@@ -1,13 +1,33 @@
 import styles from "@/app/components/computer/Taskbar.module.css";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import StartMenu from "@/app/components/computer/StartMenu";
 
 function TaskBarTime() {
+    const [formattedTime, setFormattedTime] = useState(() =>
+        new Date().toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        })
+    );
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFormattedTime(new Date().toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            }));
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className={styles.taskbarItem}>
             <div className={styles.taskbarTime}>
-                <p>2:38 PM</p>
+                <p>{formattedTime}</p>
             </div>
         </div>
     );
