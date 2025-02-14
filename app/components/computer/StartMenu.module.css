@@ -1,0 +1,78 @@
+.StartMenu {
+    position: absolute;
+    top: calc(var(--computer-height) - var(--startmenu-height) - var(--taskbar-height));
+    width: 11vw;
+    height: var(--startmenu-height);
+    border-left: .11vw solid white;
+    border-top: 0.28vh solid white;
+    border-right: 0.11vw solid black;
+    border-bottom: 0.23vh solid black;
+    background-color: var(--computer-theme-bg-color);
+}
+
+.StartMenuSplash {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    background-color: rgb(135, 135, 140);
+    height: calc(var(--startmenu-height) - .46vh);
+    width: 15%;
+    padding-left: -.25vw;
+}
+
+.StartMenuSplash > p {
+    font-size: 1.25vw;
+    display: inline-block;
+}
+
+.StartMenuSplash > p:nth-child(1) {
+    color: rgb(197, 197, 205);
+    font-weight: bold;
+    padding-top: .46vh;
+}
+
+.StartMenuSplash > p:nth-child(2) {
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+}
+
+.StartMenuItems {
+    position: absolute;
+    height: var(--startmenu-height);
+    top: 0;
+    left: var(--startmenu-splash-width);
+    width: var(--startmenu-content-width);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, 4vh);
+    grid-auto-flow: column;
+    align-content: end;
+}
+
+.StartMenuItem {
+    display: flex;
+    flex-direction: row;
+    padding-left: .52vw;
+    padding-top: .25vh;
+    padding-bottom: .25vh;
+    font-size: .75vw
+}
+
+.StartMenuItem:hover {
+    background-color: rgb(0, 0, 168);
+    color: white;
+}
+
+.StartMenuItem > img {
+    height: calc(var(--startmenu-item-height) - .5vh);
+    aspect-ratio: 1/1;
+}
+
+.StartMenuItem > p {
+    padding-left: .52vw;
+    align-content: center;
+}
+
+.StartMenuItem > p > span {
+    text-decoration: underline;
+}
