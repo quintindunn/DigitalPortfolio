@@ -73,22 +73,26 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
     handleMouseMove = (event: MouseEvent) => {
         if (this.state.moving && this.state.computer_bounding_rect !== null) {
             let x = event.clientX - this.state.move_start_x;
-            if (x < this.state.computer_bounding_rect.left - 70) {
-                x = this.state.computer_bounding_rect.left - 70;
-            }
-            const x_limit = this.state.computer_bounding_rect.right - vpToPx((100-COMPUTER_WIDTH_VW)/2, client_width) - vpToPx(+this.props.width.slice(0, this.props.width.length - 2), client_width)
-            if (x > x_limit) {
-                x = x_limit;
-            }
-
             let y = event.clientY - this.state.move_start_y;
-            if (y < this.state.computer_bounding_rect.top - 35) {
-                y = this.state.computer_bounding_rect.top - 35;
+
+            const x_limit_right = this.state.computer_bounding_rect.right - vpToPx((100-COMPUTER_WIDTH_VW)/2 + +this.props.width.slice(0, this.props.width.length - 2), client_width)
+            const x_limit_left = this.state.computer_bounding_rect.left - vpToPx((100-COMPUTER_WIDTH_VW)/2, client_width);
+
+            const y_limit_upper = this.state.computer_bounding_rect.top - vpToPx((100-COMPUTER_HEIGHT_VW)/2, client_height);
+            const y_limit_bottom = this.state.computer_bounding_rect.bottom - vpToPx((100-COMPUTER_HEIGHT_VW)/2 + +this.props.height.slice(0, this.props.height.length - 2) + TASKBAR_HEIGHT_VW, client_height);
+
+
+            if (x < x_limit_left) {
+                x = x_limit_left;
+            } else if (x > x_limit_right) {
+                x = x_limit_right;
             }
 
-            const y_limit = this.state.computer_bounding_rect.bottom - vpToPx((100-COMPUTER_HEIGHT_VW)/2, client_height) - vpToPx(+this.props.height.slice(0, this.props.height.length - 2), client_height) - vpToPx(TASKBAR_HEIGHT_VW, client_height);
-            if (y > y_limit) {
-                y = y_limit;
+            if (y < y_limit_upper) {
+                y = y_limit_upper;
+
+            } else if (y > y_limit_bottom) {
+                y = y_limit_bottom;
             }
 
             this.setState({
