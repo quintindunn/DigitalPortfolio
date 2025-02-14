@@ -108,8 +108,8 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
 
         if (target.id === "#WINDOW-CONTROLS" && event.buttons === 1) {
             const rect = target.getBoundingClientRect();
-            const x = event.clientX - rect.left + 110;
-            const y = event.clientY - rect.top + 40;
+            const x = event.clientX - rect.left + vpToPx((100-COMPUTER_WIDTH_VW)/2, client_width);
+            const y = event.clientY - rect.top + vpToPx((100-COMPUTER_HEIGHT_VW)/2, client_height);
             this.setState({
                 moving: true,
                 move_start_x: x,
