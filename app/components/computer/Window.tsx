@@ -6,8 +6,8 @@ import styles from "@/app/components/computer/Window.module.css";
 const COMPUTER_WIDTH_VW: number = 92.5;
 const COMPUTER_HEIGHT_VW: number = 92.5;
 const TASKBAR_HEIGHT_VW: number = 4;
-const client_width = document.documentElement.clientWidth;
-const client_height = document.documentElement.clientHeight;
+let client_width: number = 0;
+let client_height: number = 0;
 
 function vpToPx(vp: number, client_size: number) {
     return (vp * client_size) / 100;
@@ -49,10 +49,13 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
     onLoad = () => {
         const computer = document.getElementById("computer");
 
+
         if (computer === null) {
             return;
         }
 
+        client_width = document.documentElement.clientWidth;
+        client_height = document.documentElement.clientHeight;
         this.setState({computer_bounding_rect: computer.getBoundingClientRect()});
 
     }
