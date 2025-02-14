@@ -11,7 +11,7 @@ function StartMenuSimpleItem(props: {name: string, img_src: string}) {
 
 function ShutDownMenuItem(props: {name: string, img_src: string}) {
     return (
-        <div className={styles.StartMenuItem}>
+        <div className={styles.StartMenuItem} style={{borderTop: "1px solid white"}}>
             <img src={props.img_src} alt={props.name} />
             <p>{props.name.slice(0, 2)}<span>{props.name[2]}</span>{props.name.slice(3)}</p>
         </div>

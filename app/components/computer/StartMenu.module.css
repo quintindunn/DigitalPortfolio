@@ -49,6 +49,10 @@
     align-content: end;
 }
 
+.StartMenuItems > div:nth-child(6) {
+    border-bottom: 0.23vh solid rgb(144, 146, 152);
+}
+
 .StartMenuItem {
     display: flex;
     flex-direction: row;
