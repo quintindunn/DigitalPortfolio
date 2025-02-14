@@ -1,0 +1,59 @@
+.taskbar {
+    width: 100%;
+    height: var(--taskbar-height);
+
+    position: absolute;
+    bottom: 0;
+
+    font-weight: bold;
+    background-color: var(--computer-theme-bg-color);
+    border-top: 1px solid #ffffff;
+}
+
+.taskbarLeft, .taskbarRight {
+    position: absolute;
+    height: 100%;
+    display: flex;
+}
+
+.taskbarRight {
+    right: 1vw;
+}
+
+.taskbarLeft {
+    left: 0.2vw;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: 1fr 2.5fr;
+}
+
+.taskbarItem {
+    height: var(--taskbar-item-height);
+    margin: auto 0;
+    padding: 5px;
+    border: 1px solid #828282;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+}
+
+.taskbarItem > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.taskbarStart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.taskbarStatusParent {
+    padding: 3px;
+}
+
+.taskbarStatus {
+    background-color: #fefefe;
+    padding-left: 3px;
+}

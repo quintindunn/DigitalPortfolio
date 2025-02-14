@@ -1,7 +1,10 @@
 "use client";
 
-import styles from "@/app/components/computer/Computer.module.css";
+import TaskBar from "@/app/components/computer/Taskbar"
+
 import React, {createContext, useContext, useState} from "react";
+import styles from "@/app/components/computer/Computer.module.css";
+
 
 interface ComputerContextType {
     open: boolean;
@@ -29,27 +32,6 @@ export function useComputer() {
         throw new Error("useComputer must be used within a ComputerProvider");
     }
     return context;
-}
-
-function TaskBar() {
-    return (
-        <div className={styles.taskbar}>
-            <div className={styles.taskbarLeft}>
-                <div className={styles.taskbarStart}>
-                    <span>IM</span>
-                    <p>Start</p>
-                </div>
-                <div className={styles.taskbarStatus}>
-                    <p>Welcome</p>
-                </div>
-            </div>
-            <div className={styles.taskbarRight}>
-                <div className={styles.taskbarTime}>
-                    <p>2:38 PM</p>
-                </div>
-            </div>
-        </div>
-    );
 }
 
 export default function Computer() {
