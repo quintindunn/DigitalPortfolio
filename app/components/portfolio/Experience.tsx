@@ -1,4 +1,4 @@
-import Subheading from "@/app/components/Subheading";
+import Subheading from "@/app/components/portfolio/Subheading";
 
 export default function Experience() {
     return (

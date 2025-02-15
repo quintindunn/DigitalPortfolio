@@ -1,5 +1,5 @@
-import Card from "@/app/components/Card";
-import Subheading from "@/app/components/Subheading";
+import Card from "@/app/components/portfolio/Card";
+import Subheading from "@/app/components/portfolio/Subheading";
 
 import lang from "@/app/lang";
 

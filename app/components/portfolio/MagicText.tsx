@@ -1,4 +1,4 @@
-import styles from "@/app/components/MagicText.module.css";
+import styles from "@/app/components/portfolio/MagicText.module.css";
 
 export default function MagicText(props: {text: string}) {
     return (

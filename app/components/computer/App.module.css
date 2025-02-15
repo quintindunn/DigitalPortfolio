@@ -1,0 +1,16 @@
+.App {
+    font-size: 0.7vw;
+    text-align: center;
+    padding: 2px;
+}
+
+.App:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.App > div > img {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+}

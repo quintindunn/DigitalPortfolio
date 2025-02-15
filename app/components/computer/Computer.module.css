@@ -1,0 +1,33 @@
+.computer > div[id="close"] {
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1vw;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.computer {
+    position: fixed;
+    width: var(--computer-width);
+    height: var(--computer-height);
+    top: calc((100vh - var(--computer-height)) / 2);
+    left: calc((100vw - var(--computer-width)) / 2);
+    background-color: purple;
+    opacity: 1;
+    z-index: 100;
+    color: #000000;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.computer img {
+    pointer-events: none;
+}

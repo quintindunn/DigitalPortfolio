@@ -1,0 +1,54 @@
+.Menu {
+    display: flex;
+    width: 30%;
+    height: 15%;
+    align-items: center;
+    gap: .25vw;
+}
+
+.Menu > p {
+    padding-left: 1vw;
+}
+
+.Menu > p > span {
+    text-decoration: underline;
+}
+
+.Body {
+    position: absolute;
+    top: 15%;
+    width: 98%;
+    height: 75%;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 1%;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    background-color: white;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    overflow-y: scroll;
+}
+
+.Item {
+    color: black;
+    font-size: 0.7vw;
+    text-align: center;
+    padding: 2px;
+}
+
+.Item:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.Item > div > img {
+    width: 60%;
+    height: 60%;
+    margin: auto;
+}

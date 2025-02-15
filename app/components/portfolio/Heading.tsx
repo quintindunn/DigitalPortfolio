@@ -1,17 +1,18 @@
 import Image from "next/image";
 
-import MagicText from "@/app/components/MagicText";
-import SocialLinks from "@/app/components/SocialLinks";
-import Spacer from "@/app/components/Spacer";
+import MagicText from "@/app/components/portfolio/MagicText";
+import SocialLinks from "@/app/components/portfolio/SocialLinks";
+import Spacer from "@/app/components/portfolio/Spacer";
 
 import lang from "@/app/lang";
+import styles from "@/app/components/portfolio/Heading.module.css"
 
 export default function Heading(props: { name: string }) {
     return (
         <div>
             <div style={{ width: "4rem", height: "4rem", position: "relative" }}>
                 <Image
-                    className={"inline"}
+                    className={`inline ${styles.wave}`}
                     src={"waving-hand-svgrepo-com.svg"}
                     alt={"👋"}
                     fill
@@ -26,7 +27,7 @@ export default function Heading(props: { name: string }) {
                     <Spacer size={20} />
                     <SocialLinks />
                 </div>
-                <div>
+                <div className={styles.profilePicture}>
                     <Image src={"/threadart.png"} alt={"👋"} width={256} height={256}/>
                 </div>
             </div>
