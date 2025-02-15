@@ -35,7 +35,7 @@ export default function App(props: AppProps) {
             }
 
             const new_ref_id = `${Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000}`;
-            const newWindow = React.createElement(WindowType, { ref_id: new_ref_id });
+            const newWindow = React.createElement(WindowType, { ref_id: new_ref_id, internal_app_code: props.internal_app_code });
             setActiveRefId(new_ref_id);
             setOpenWindows([...openWindows, newWindow]);
         };

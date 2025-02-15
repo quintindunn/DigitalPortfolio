@@ -165,6 +165,8 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             }}
             className={styles.ComputerWindow}
             data-active={props.ref_id === activeRefId}
+            data-refid={props.ref_id}
+            data-start-time={`${Date.now()}`}
             ref={ref}
         >
             <div className={styles.WindowControls} id={`#${props.ref_id}-WINDOW-CONTROLS`}>

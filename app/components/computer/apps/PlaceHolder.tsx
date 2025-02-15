@@ -3,6 +3,7 @@ import React from "react";
 
 interface PlaceHolderProps {
     ref_id: string;
+    internal_app_code: string;
 }
 
 export default function PlaceHolder(props: PlaceHolderProps) {

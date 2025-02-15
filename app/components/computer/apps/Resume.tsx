@@ -5,6 +5,7 @@ import styles from "@/app/components/computer/apps/Resume.module.css"
 
 interface ResumeProps {
     ref_id: string;
+    internal_app_code: string;
 }
 
 interface ResumeState {

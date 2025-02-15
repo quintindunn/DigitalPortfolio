@@ -6,6 +6,7 @@ import App from "@/app/components/computer/App";
 
 interface MyComputerProps {
     ref_id: string;
+    internal_app_code: string;
 }
 
 interface MyComputerState {
