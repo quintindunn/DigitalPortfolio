@@ -7,6 +7,8 @@ interface AppProps {
     name: string;
     img_src: string;
     internal_app_code: string;
+    color?: string
+    id?: string;
 }
 
 
@@ -43,7 +45,7 @@ export default function App(props: AppProps) {
     }, [openWindows, props.internal_app_code, setOpenWindows]);
 
     return (
-        <div className={styles.App} ref={ref}>
+        <div className={styles.App} ref={ref} id={props.id} style={{color: !!props.color ? props.color : "white"}}>
             <div>
                 <img
                     src={props.img_src}

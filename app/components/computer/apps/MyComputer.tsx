@@ -2,6 +2,7 @@ import React from "react";
 import ComputerWindow from "@/app/components/computer/Window";
 
 import styles from "@/app/components/computer/apps/MyComputer.module.css"
+import App from "@/app/components/computer/App";
 
 interface MyComputerProps {
     ref_id: string;
@@ -16,20 +17,6 @@ function MenuItem(props: {text: string, id: string}) {
         <>
             <p id={props.id} className={styles.MenuItem}><span>{props.text[0]}</span>{props.text.slice(1)}</p>
         </>
-    );
-}
-
-function Item(props: {name: string, id: string, img_src: string}) {
-    return (
-        <div className={styles.Item} id={props.id}>
-            <div>
-                <img
-                    src={props.img_src}
-                    alt={props.name}
-                />
-                <p>{props.name}</p>
-            </div>
-        </div>
     );
 }
 
@@ -52,9 +39,7 @@ export default class MyComputer extends React.Component<MyComputerProps, MyCompu
                         <MenuItem text={"Help"} id={"help"} />
                     </div>
                     <div className={styles.Body}>
-                        <Item name={"Resume"} id={"resume"} img_src={"/computer/apps/mycomputer.png"}></Item>
-                        <Item name={"Resume"} id={"resume"} img_src={"/computer/apps/mycomputer.png"}></Item>
-                        <Item name={"Resume"} id={"resume"} img_src={"/computer/apps/mycomputer.png"}></Item>
+                        <App color={"black"} name={"Resume"} id={"resume"} internal_app_code={"resume"} img_src={"/computer/apps/mycomputer.png"} />
                     </div>
                 </ComputerWindow>
             </>
