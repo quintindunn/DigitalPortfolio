@@ -32,6 +32,9 @@ export default function ComputerWindow(props: ComputerWindowProps) {
     const [y, setY] = useState(0);
     const [moveStartX, setMoveStartX] = useState(0);
     const [moveStartY, setMoveStartY] = useState(0);
+    const [maximized, setMaximized] = useState(false);
+    const [maximizedX, setMaximizedX] = useState(0);
+    const [maximizedY, setMaximizedY] = useState(0);
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -53,6 +56,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             handleFocusWindow(event);
             handleMoveWindow(event);
             handleMinimizeWindow(event);
+            handleMaximizeWindow(event);
         };
 
         const handleMouseUp = (event: MouseEvent) => {
@@ -151,6 +155,40 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             setMinimizedRefIds([...minimizedRefIds, props.ref_id]);
         }
 
+        const handleMaximizeWindow = (event: MouseEvent) => {
+            if (event.button !== 0) {
+                return;
+            }
+
+            if (!(event.target instanceof HTMLElement)) {
+                return;
+            }
+
+            if (event.target.id !== `#${props.ref_id}-WINDOW-CONTROLS-MAXIMIZE`) {
+                return;
+            }
+
+            if (!ref.current) return;
+
+            const ref_style = ref.current.style;
+            if (!maximized) {
+                setMaximizedX(+ref_style.left.slice(0, ref_style.left.length-2));
+                setMaximizedY(+ref_style.top.slice(0, ref_style.top.length-2));
+                ref_style.width = `${COMPUTER_WIDTH_VW}vw`;
+                ref_style.height = `${COMPUTER_HEIGHT_VW-TASKBAR_HEIGHT_VW}vh`;
+                ref_style.top = `0`;
+                ref_style.left = `0`;
+                setMaximized(true);
+            } else {
+                ref_style.width = props.width;
+                ref_style.height = props.height;
+                ref_style.top = `${maximizedY}px`;
+                ref_style.left = `${maximizedX}px`;
+                setMaximized(false);
+            }
+
+        }
+
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const handleResize = (_event: Event) => {
             client_width = document.documentElement.clientWidth;
@@ -169,7 +207,9 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("resize", handleResize);
         };
-    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows, setActiveRefId, setActiveWindowName, props.title, setMinimizedRefIds, minimizedRefIds]);
+    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows,
+        setOpenWindows, setActiveRefId, setActiveWindowName, props.title, setMinimizedRefIds, minimizedRefIds,
+        maximized, setMaximized, maximizedX, setMaximizedX, maximizedY, setMaximizedY]);
     return !(minimizedRefIds.includes(props.ref_id)) ? (
         <div style={{
                 zIndex: (Date.now() / 200 - START_TIME) + 20000,
@@ -192,7 +232,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
                 <div className={styles.WindowControlsRight} id={`#${props.ref_id}-WINDOW-CONTROLS`}>
                     <button type="button" id={`#${props.ref_id}-WINDOW-CONTROLS-CLOSE`}>X</button>
                     <button type="button" id={`#${props.ref_id}-WINDOW-CONTROLS-MAXIMIZE`}>🗖</button>
-                    <button type="button" id={`#${props.ref_id}-WINDOW-CONTROLS-MINIMIZE`}>🗕</button>
+                    <button type="button" id={`#${props.ref_id}-WINDOW-CONTROLS-MINIMIZE`}>_</button>
                 </div>
             </div>
             <div className={styles.WindowBody}>{props.children}</div>
