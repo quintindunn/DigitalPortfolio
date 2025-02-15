@@ -73,6 +73,9 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             const computerBoundingRect = computer.getBoundingClientRect();
 
             if (moving && computerBoundingRect !== null) {
+                if (ref.current) {
+                    ref.current.style.zIndex = `${((Date.now() / 200) - START_TIME) + 20000}`;
+                }
                 let newX = event.clientX - moveStartX;
                 let newY = event.clientY - moveStartY;
 
