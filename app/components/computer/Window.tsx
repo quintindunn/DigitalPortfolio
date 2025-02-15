@@ -149,9 +149,6 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             }
 
             setMinimizedRefIds([...minimizedRefIds, props.ref_id]);
-
-            console.log(minimizedRefIds);
-
         }
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

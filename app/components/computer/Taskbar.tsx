@@ -98,12 +98,7 @@ function TaskBarWindow(props: {internal_app_code: string, ref_id: string}) {
 
             const target = event.target as Node;
 
-            if (!ref.current.contains(target)) {
-                {
-                    console.log(103);
-                    return
-                };
-            }
+            if (!ref.current.contains(target)) return;
 
             setActiveRefId(props.ref_id);
             setActiveWindowName(internal_name_to_displayed_name(props.internal_app_code));
