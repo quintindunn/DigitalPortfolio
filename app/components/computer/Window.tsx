@@ -19,6 +19,7 @@ interface ComputerWindowProps {
     width: string;
     height: string;
     active: boolean;
+    ref_id: string;
     children?: React.ReactNode;
 }
 
@@ -68,6 +69,8 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
         if (event.button === 0) {
             this.setState({ moving: false });
         }
+
+        this.handleCloseWindow(event);
     };
 
     handleMouseMove = (event: MouseEvent) => {
@@ -106,7 +109,7 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
         const target = event.target as HTMLElement;
         if (!target) return;
 
-        if (target.id === "#WINDOW-CONTROLS" && event.buttons === 1) {
+        if (target.id === `#${this.props.ref_id}-WINDOW-CONTROLS` && event.buttons === 1) {
             const rect = target.getBoundingClientRect();
             const x = event.clientX - rect.left + vpToPx((100-COMPUTER_WIDTH_VW)/2, client_width);
             const y = event.clientY - rect.top + vpToPx((100-COMPUTER_HEIGHT_VW)/2, client_height);
@@ -117,6 +120,22 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
                 target_bounding_rect: rect
             });
         }
+    }
+
+    handleCloseWindow(event: MouseEvent) {
+        if (event.button !== 0) {
+            return;
+        }
+
+        if (!(event.target instanceof HTMLElement)) {
+            return;
+        }
+
+        if (event.target.id !== `#${this.props.ref_id}-WINDOW-CONTROLS-CLOSE`) {
+            return;
+        }
+
+
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -153,15 +172,15 @@ export default class ComputerWindow extends React.Component<ComputerWindowProps,
                 className={styles.ComputerWindow}
                 data-active={this.props.active}
             >
-                <div className={styles.WindowControls} id="#WINDOW-CONTROLS">
-                    <div className={styles.WindowControlsLeft} id={"#WINDOW-CONTROLS"}>
-                        <img src={this.props.icon_src} alt={this.props.title} id={"#WINDOW-CONTROLS"}/>
-                        <p id={"#WINDOW-CONTROLS"}>{this.props.title}</p>
+                <div className={styles.WindowControls} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>
+                    <div className={styles.WindowControlsLeft} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>
+                        <img src={this.props.icon_src} alt={this.props.title} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}/>
+                        <p id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>{this.props.title}</p>
                     </div>
-                    <div className={styles.WindowControlsRight} id={"#WINDOW-CONTROLS"}>
-                        <button type="button" id="#WINDOW-CONTROLS-CLOSE">X</button>
-                        <button type="button" id="#WINDOW-CONTROLS-MAXIMIZE">🗖</button>
-                        <button type="button" id="#WINDOW-CONTROLS-MINIMIZE">🗕</button>
+                    <div className={styles.WindowControlsRight} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>
+                        <button type="button" id={`#${this.props.ref_id}-WINDOW-CONTROLS-CLOSE`}>X</button>
+                        <button type="button" id={`#${this.props.ref_id}-WINDOW-CONTROLS-MAXIMIZE`}>🗖</button>
+                        <button type="button" id={`#${this.props.ref_id}-WINDOW-CONTROLS-MINIMIZE`}>🗕</button>
                     </div>
                 </div>
                 <div className={styles.WindowBody}>

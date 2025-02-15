@@ -6,7 +6,6 @@ import React, {createContext, useContext, useState} from "react";
 import styles from "@/app/components/computer/Computer.module.css";
 import Desktop from "@/app/components/computer/Desktop";
 import App from "@/app/components/computer/App";
-import MyComputer from "@/app/components/computer/apps/MyComputer";
 
 
 interface ComputerContextType {
@@ -15,6 +14,8 @@ interface ComputerContextType {
     on: boolean;
     setOn: (value: boolean) => void;
 }
+
+export type WindowStateContextType = [never[], React.Dispatch<React.SetStateAction<never[]>>];
 
 export const ComputerContext = createContext<ComputerContextType | undefined>(undefined);
 
@@ -37,30 +38,37 @@ export function useComputer() {
     return context;
 }
 
-function Apps() {
+function Apps(props: {window_state_ctx: WindowStateContextType}) {
     return (<>
-        <App name={"My Computer"} img_src={"/computer/apps/mycomputer.png"} />
-        <App name={"Network Neighborhood"} img_src={"/computer/apps/networkneighborhood.png"} />
-        <App name={"Inbox"} img_src={"/computer/apps/inbox.png"} />
-        <App name={"Recycle Bin"} img_src={"/computer/apps/recyclebin.png"} />
-        <App name={"The Microsoft Network"} img_src={"/computer/apps/themicrosoftnetwork.png"} />
-        <App name={"My Briefcase"} img_src={"/computer/apps/mybriefcase.png"} />
-        <App name={"Python3"} img_src={"/skills/python.png"} />
+        <App window_state_ctx={props.window_state_ctx} internal_app_code={"mycomputer"} name={"My Computer"} img_src={"/computer/apps/mycomputer.png"} />
+        <App window_state_ctx={props.window_state_ctx} internal_app_code={"networkneighborhood"} name={"Network Neighborhood"} img_src={"/computer/apps/networkneighborhood.png"} />
+        <App window_state_ctx={props.window_state_ctx} internal_app_code={"inbox"} name={"Inbox"} img_src={"/computer/apps/inbox.png"} />
+        <App window_state_ctx={props.window_state_ctx} internal_app_code={"recyclebin"} name={"Recycle Bin"} img_src={"/computer/apps/recyclebin.png"} />
+        <App window_state_ctx={props.window_state_ctx} internal_app_code={"themicrosoftnetwork"} name={"The Microsoft Network"} img_src={"/computer/apps/themicrosoftnetwork.png"} />
+        <App window_state_ctx={props.window_state_ctx} internal_app_code={"mybriefcase"} name={"My Briefcase"} img_src={"/computer/apps/mybriefcase.png"} />
+        <App window_state_ctx={props.window_state_ctx} internal_app_code={"python3"} name={"Python3"} img_src={"/skills/python.png"} />
     </>);
 }
 
-function Windows() {
+function Windows(props: { window_state_ctx: WindowStateContextType }) {
     return (
         <>
-            <MyComputer />
+            {props.window_state_ctx[0].map((window: React.ReactNode, index: number) => (
+                <div key={index}>
+                    {window}
+                </div>
+            ))}
         </>
     );
 }
 
 export default function Computer() {
-    const {open, setOpen} = useComputer();
+    const ctx = useComputer();
+    const [windowState, setWindowState] = useState([]);
+    const windowStateCtx: WindowStateContextType = [windowState, setWindowState];
+
     function close() {
-        setOpen(false);
+        ctx.setOpen(false);
     }
 
     const content = (
@@ -69,9 +77,9 @@ export default function Computer() {
                 <button type="button" onClick={close}>X</button>
             </div>
             <div>
-                <Desktop>
-                    <Apps/>
-                    <Windows />
+                <Desktop window_state_ctx={windowStateCtx} >
+                    <Apps window_state_ctx={windowStateCtx} />
+                    <Windows window_state_ctx={windowStateCtx} />
                 </Desktop>
                 <TaskBar />
             </div>
@@ -79,6 +87,6 @@ export default function Computer() {
     );
 
     return (
-        open ? content : (<> </>)
+        ctx.open ? content : (<> </>)
     );
 }

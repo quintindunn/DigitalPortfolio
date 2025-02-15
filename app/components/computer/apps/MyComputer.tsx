@@ -3,7 +3,9 @@ import ComputerWindow from "@/app/components/computer/Window";
 
 import styles from "@/app/components/computer/apps/MyComputer.module.css"
 
-type MyComputerProps = object
+interface MyComputerProps {
+    ref_id: string;
+}
 
 interface MyComputerState {
     active: boolean;
@@ -42,7 +44,7 @@ export default class MyComputer extends React.Component<MyComputerProps, MyCompu
     render() {
         return (
             <>
-                <ComputerWindow title={"My Computer"} icon_src={"/computer/apps/mycomputer.png"} width={"30vw"} height={"35vh"} active={this.state.active}>
+                <ComputerWindow ref_id={this.props.ref_id} title={"My Computer"} icon_src={"/computer/apps/mycomputer.png"} width={"30vw"} height={"35vh"} active={this.state.active}>
                     <div className={styles.Menu}>
                         <MenuItem text={"File"} id={"file"} />
                         <MenuItem text={"Edit"} id={"edit"} />
