@@ -30,7 +30,7 @@ export default function App(props: AppProps) {
                 return;
             }
 
-            const newWindow = React.createElement(WindowType, { ref_id: `${openWindows.length}` });
+            const newWindow = React.createElement(WindowType, { ref_id: `${Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000}` });
             setOpenWindows([...openWindows, newWindow]);
         };
 

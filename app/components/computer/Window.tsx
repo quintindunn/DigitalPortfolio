@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styles from "@/app/components/computer/Window.module.css";
+import {useComputer} from "@/app/components/computer/Computer";
 
 const COMPUTER_WIDTH_VW: number = 92.5;
 const COMPUTER_HEIGHT_VW: number = 92.5;
@@ -24,6 +25,8 @@ interface ComputerWindowProps {
 }
 
 export default function ComputerWindow(props: ComputerWindowProps) {
+    const { openWindows, setOpenWindows } = useComputer();
+
     const [moving, setMoving] = useState(false);
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
@@ -84,7 +87,6 @@ export default function ComputerWindow(props: ComputerWindowProps) {
                 } else if (newY > yLimitBottom) {
                     newY = yLimitBottom;
                 }
-                console.log(newX, newY);
                 setX(newX);
                 setY(newY);
             }
@@ -116,7 +118,10 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             if (event.target.id !== `#${props.ref_id}-WINDOW-CONTROLS-CLOSE`) {
                 return;
             }
-            // Add functionality for closing the window
+
+            // @ts-expect-error - It's just being stupid
+            const updatedWindows = openWindows.filter((window) => window.props.ref_id !== props.ref_id);
+            setOpenWindows(updatedWindows);
         };
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -137,7 +142,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("resize", handleResize);
         };
-    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height]);
+    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows]);
 
     return (
         <div
