@@ -21,7 +21,7 @@ export default function TimeMachine() {
             </BrowserView>
             <MobileView>
                 <p>
-                    Use a desktop browser on your computer to use the time machine!
+                    Use a desktop browser on your computer to use the time machine! (It&#39;s worth it!)
                 </p>
             </MobileView>
         </div>
