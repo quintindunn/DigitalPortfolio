@@ -152,7 +152,7 @@ export default function TaskBar() {
 
     const tbWindows = (
         <>
-            {openWindows.map((window: React.ReactNode, index: number) => (
+            {openWindows.slice(0, 9).map((window: React.ReactNode, index: number) => (
                 <TaskBarWindow key={index} internal_app_code={window && window_to_internal_app_code(window)} ref_id={window_to_ref_id(window)} />
             ))}
         </>
