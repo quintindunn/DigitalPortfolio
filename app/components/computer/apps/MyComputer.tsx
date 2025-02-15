@@ -44,7 +44,7 @@ export default class MyComputer extends React.Component<MyComputerProps, MyCompu
     render() {
         return (
             <>
-                <ComputerWindow ref_id={this.props.ref_id} title={"My Computer"} icon_src={"/computer/apps/mycomputer.png"} width={"30vw"} height={"35vh"} active={this.state.active}>
+                <ComputerWindow ref_id={this.props.ref_id} title={"My Computer"} icon_src={"/computer/apps/mycomputer.png"} width={"30vw"} height={"35vh"}>
                     <div className={styles.Menu}>
                         <MenuItem text={"File"} id={"file"} />
                         <MenuItem text={"Edit"} id={"edit"} />

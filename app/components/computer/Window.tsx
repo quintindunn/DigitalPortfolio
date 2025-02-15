@@ -20,7 +20,6 @@ interface ComputerWindowProps {
     icon_src: string;
     width: string;
     height: string;
-    active: boolean;
     ref_id: string;
     children?: React.ReactNode;
 }
