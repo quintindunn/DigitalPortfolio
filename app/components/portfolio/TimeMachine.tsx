@@ -13,7 +13,7 @@ export default function TimeMachine() {
 
     return (
         <div>
-            <Subheading name={"Time Machine"} />
+            <Subheading name={"Time Machine (WIP)"} />
             <BrowserView>
                 <p>
                     Go <a href={"#timemachine"} className={"text-blue-400"} onClick={openComputer}>back in time</a>, before I was even born.
