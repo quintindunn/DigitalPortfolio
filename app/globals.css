@@ -13,12 +13,14 @@
   --computer-height: 92.5vh;
 
   --taskbar-height: 50px;
-  --taskbar-item-height: 40px;
+  --taskbar-item-height: 4vh;
 
   --startmenu-height: 28vh;
   --startmenu-splash-width: 15%;
   --startmenu-content-width: calc(100% - var(--startmenu-splash-width));
   --startmenu-item-height: 3.5vh;
+
+  --computerwindow-controls-height: 4vh;
 
   --computer-theme-bg-color: rgb(195, 195, 195);
   --computer-background-color: rgb(0, 130, 130);

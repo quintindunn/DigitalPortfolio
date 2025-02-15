@@ -13,6 +13,14 @@ interface ComputerContextType {
     setOpen: (value: boolean) => void;
     on: boolean;
     setOn: (value: boolean) => void;
+    openWindows: React.ReactNode[];
+    setOpenWindows: React.Dispatch<React.SetStateAction<React.ReactNode[]>>;
+    activeRefId: string;
+    setActiveRefId: (id: string) => void;
+    activeWindowName: string;
+    setActiveWindowName: (name: string) => void;
+    minimizedRefIds: string[];
+    setMinimizedRefIds: (ids: string[]) => void;
 }
 
 export const ComputerContext = createContext<ComputerContextType | undefined>(undefined);
@@ -20,9 +28,13 @@ export const ComputerContext = createContext<ComputerContextType | undefined>(un
 export function ComputerProvider({ children }: { children: React.ReactNode }) {
     const [open, setOpen] = useState(true);
     const [on, setOn] = useState(false);
+    const [openWindows, setOpenWindows] = useState<React.ReactNode[]>([]);
+    const [activeRefId, setActiveRefId] = useState<string>("0");
+    const [activeWindowName, setActiveWindowName] = useState<string>("Welcome");
+    const [minimizedRefIds, setMinimizedRefIds] = useState<string[]>([]);
 
     return (
-        <ComputerContext.Provider value={{ open, setOpen, on, setOn }}>
+        <ComputerContext.Provider value={{ open, setOpen, on, setOn, openWindows, setOpenWindows, activeRefId, setActiveRefId, activeWindowName, setActiveWindowName, minimizedRefIds, setMinimizedRefIds }}>
             {children}
         </ComputerContext.Provider>
     );
@@ -36,25 +48,48 @@ export function useComputer() {
     return context;
 }
 
+function Apps() {
+    return (<>
+        <App internal_app_code={"mycomputer"} name={"My Computer"} img_src={"/computer/apps/mycomputer.png"} />
+        <App internal_app_code={"resume"} name={"Resume"} img_src={"/computer/apps/resume.png"} />
+        <App internal_app_code={"networkneighborhood"} name={"Network Neighborhood"} img_src={"/computer/apps/networkneighborhood.png"} />
+        <App internal_app_code={"inbox"} name={"Inbox"} img_src={"/computer/apps/inbox.png"} />
+        <App internal_app_code={"recyclebin"} name={"Recycle Bin"} img_src={"/computer/apps/recyclebin.png"} />
+        <App internal_app_code={"themicrosoftnetwork"} name={"The Microsoft Network"} img_src={"/computer/apps/themicrosoftnetwork.png"} />
+        <App internal_app_code={"mybriefcase"} name={"My Briefcase"} img_src={"/computer/apps/mybriefcase.png"} />
+        <App internal_app_code={"python3"} name={"Python3"} img_src={"/skills/python.png"} />
+    </>);
+}
+
+function Windows() {
+    const { openWindows } = useComputer();
+    return (
+        <>
+            {openWindows.map((window: React.ReactNode, index: number) => (
+                <div key={index}>
+                    {window}
+                </div>
+            ))}
+        </>
+    );
+}
+
 export default function Computer() {
-    const {open, setOpen} = useComputer();
+    const ctx = useComputer();
+
     function close() {
-        setOpen(false);
+        ctx.setOpen(false);
     }
 
     const content = (
-        <div className={styles.computer}>
+        <div className={styles.computer} id={"computer"}>
             <div id="close">
                 <button type="button" onClick={close}>X</button>
             </div>
             <div>
-                <Desktop>
-                    <App name={"My Computer"} img_src={"/computer/apps/mycomputer.png"} />
-                    <App name={"Network Neighborhood"} img_src={"/computer/apps/networkneighborhood.png"} />
-                    <App name={"Inbox"} img_src={"/computer/apps/inbox.png"} />
-                    <App name={"Recycle Bin"} img_src={"/computer/apps/recyclebin.png"} />
-                    <App name={"The Microsoft Network"} img_src={"/computer/apps/themicrosoftnetwork.png"} />
-                    <App name={"My Briefcase"} img_src={"/computer/apps/mybriefcase.png"} />
+                <Desktop >
+                    <Apps />
+                    <Windows />
                 </Desktop>
                 <TaskBar />
             </div>
@@ -62,6 +97,6 @@ export default function Computer() {
     );
 
     return (
-        open ? content : (<> </>)
+        ctx.open ? content : (<> </>)
     );
 }
