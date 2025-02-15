@@ -26,7 +26,7 @@ interface ComputerContextType {
 export const ComputerContext = createContext<ComputerContextType | undefined>(undefined);
 
 export function ComputerProvider({ children }: { children: React.ReactNode }) {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [on, setOn] = useState(false);
     const [openWindows, setOpenWindows] = useState<React.ReactNode[]>([]);
     const [activeRefId, setActiveRefId] = useState<string>("0");
