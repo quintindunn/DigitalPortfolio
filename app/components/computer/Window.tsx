@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "@/app/components/computer/Window.module.css";
 
 const COMPUTER_WIDTH_VW: number = 92.5;
@@ -23,170 +23,147 @@ interface ComputerWindowProps {
     children?: React.ReactNode;
 }
 
-interface ComputerWindowState {
-    moving: boolean;
-    x: number;
-    y: number;
-    move_start_x: number;
-    move_start_y: number;
-    target_bounding_rect: DOMRect | null;
-    computer_bounding_rect: DOMRect | null;
-}
+export default function ComputerWindow(props: ComputerWindowProps) {
+    const [moving, setMoving] = useState(false);
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+    const [moveStartX, setMoveStartX] = useState(0);
+    const [moveStartY, setMoveStartY] = useState(0);
 
-export default class ComputerWindow extends React.Component<ComputerWindowProps, ComputerWindowState> {
-    constructor(props: ComputerWindowProps) {
-        super(props);
-        this.state = {
-            moving: false,
-            x: 0,
-            y: 0,
-            move_start_x: 0,
-            move_start_y: 0,
-            target_bounding_rect: null,
-            computer_bounding_rect: null,
+    const ref = useRef<HTMLDivElement>(null);
+
+    const { width, height } = props;
+
+    useEffect(() => {
+        const onLoad = () => {
+            const computer = document.getElementById("computer");
+            if (computer === null) {
+                console.warn("Computer not found");
+                return;
+            }
+
+            client_width = document.documentElement.clientWidth;
+            client_height = document.documentElement.clientHeight;
         };
-    }
 
-    onLoad = () => {
-        const computer = document.getElementById("computer");
+        const handleMouseDown = (event: MouseEvent) => {
+            handleMoveWindow(event);
+        };
 
+        const handleMouseUp = (event: MouseEvent) => {
+            if (event.button === 0) {
+                setMoving(false);
+            }
+            handleCloseWindow(event);
+        };
 
-        if (computer === null) {
-            return;
-        }
+        const handleMouseMove = (event: MouseEvent) => {
+            const computer = document.getElementById("computer");
 
-        client_width = document.documentElement.clientWidth;
-        client_height = document.documentElement.clientHeight;
-        this.setState({computer_bounding_rect: computer.getBoundingClientRect()});
+            if (!computer) return;
+            const computerBoundingRect = computer.getBoundingClientRect();
 
-    }
+            if (moving && computerBoundingRect !== null) {
+                let newX = event.clientX - moveStartX;
+                let newY = event.clientY - moveStartY;
 
-    handleMouseDown = (event: MouseEvent) => {
-        this.handleMoveWindow(event);
-    };
+                const xLimitRight = computerBoundingRect.right - vpToPx((100 - COMPUTER_WIDTH_VW) / 2 + +props.width.slice(0, props.width.length - 2), client_width);
+                const xLimitLeft = computerBoundingRect.left - vpToPx((100 - COMPUTER_WIDTH_VW) / 2, client_width);
 
-    handleMouseUp = (event: MouseEvent) => {
-        if (event.button === 0) {
-            this.setState({ moving: false });
-        }
+                const yLimitUpper = computerBoundingRect.top - vpToPx((100 - COMPUTER_HEIGHT_VW) / 2, client_height);
+                const yLimitBottom = computerBoundingRect.bottom - vpToPx((100 - COMPUTER_HEIGHT_VW) / 2 + +props.height.slice(0, props.height.length - 2) + TASKBAR_HEIGHT_VW, client_height);
 
-        this.handleCloseWindow(event);
-    };
+                if (newX < xLimitLeft) {
+                    newX = xLimitLeft;
+                } else if (newX > xLimitRight) {
+                    newX = xLimitRight;
+                }
 
-    handleMouseMove = (event: MouseEvent) => {
-        if (this.state.moving && this.state.computer_bounding_rect !== null) {
-            let x = event.clientX - this.state.move_start_x;
-            let y = event.clientY - this.state.move_start_y;
+                if (newY < yLimitUpper) {
+                    newY = yLimitUpper;
+                } else if (newY > yLimitBottom) {
+                    newY = yLimitBottom;
+                }
+                console.log(newX, newY);
+                setX(newX);
+                setY(newY);
+            }
+        };
 
-            const x_limit_right = this.state.computer_bounding_rect.right - vpToPx((100-COMPUTER_WIDTH_VW)/2 + +this.props.width.slice(0, this.props.width.length - 2), client_width)
-            const x_limit_left = this.state.computer_bounding_rect.left - vpToPx((100-COMPUTER_WIDTH_VW)/2, client_width);
+        const handleMoveWindow = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target) return;
 
-            const y_limit_upper = this.state.computer_bounding_rect.top - vpToPx((100-COMPUTER_HEIGHT_VW)/2, client_height);
-            const y_limit_bottom = this.state.computer_bounding_rect.bottom - vpToPx((100-COMPUTER_HEIGHT_VW)/2 + +this.props.height.slice(0, this.props.height.length - 2) + TASKBAR_HEIGHT_VW, client_height);
+            if (target.id === `#${props.ref_id}-WINDOW-CONTROLS` && event.buttons === 1) {
+                const rect = target.getBoundingClientRect();
+                const newX = event.clientX - rect.left + vpToPx((100 - COMPUTER_WIDTH_VW) / 2, client_width);
+                const newY = event.clientY - rect.top + vpToPx((100 - COMPUTER_HEIGHT_VW) / 2, client_height);
+                setMoving(true);
+                setMoveStartX(newX);
+                setMoveStartY(newY);
+            }
+        };
 
-
-            if (x < x_limit_left) {
-                x = x_limit_left;
-            } else if (x > x_limit_right) {
-                x = x_limit_right;
+        const handleCloseWindow = (event: MouseEvent) => {
+            if (event.button !== 0) {
+                return;
             }
 
-            if (y < y_limit_upper) {
-                y = y_limit_upper;
-
-            } else if (y > y_limit_bottom) {
-                y = y_limit_bottom;
+            if (!(event.target instanceof HTMLElement)) {
+                return;
             }
 
-            this.setState({
-                x: x,
-                y: y
-            });
-        }
-    };
+            if (event.target.id !== `#${props.ref_id}-WINDOW-CONTROLS-CLOSE`) {
+                return;
+            }
+            // Add functionality for closing the window
+        };
 
-    handleMoveWindow(event: MouseEvent) {
-        const target = event.target as HTMLElement;
-        if (!target) return;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const handleResize = (_event: Event) => {
+            client_width = document.documentElement.clientWidth;
+            client_height = document.documentElement.clientHeight;
+        };
 
-        if (target.id === `#${this.props.ref_id}-WINDOW-CONTROLS` && event.buttons === 1) {
-            const rect = target.getBoundingClientRect();
-            const x = event.clientX - rect.left + vpToPx((100-COMPUTER_WIDTH_VW)/2, client_width);
-            const y = event.clientY - rect.top + vpToPx((100-COMPUTER_HEIGHT_VW)/2, client_height);
-            this.setState({
-                moving: true,
-                move_start_x: x,
-                move_start_y: y,
-                target_bounding_rect: rect
-            });
-        }
-    }
+        onLoad();
+        window.addEventListener("mousedown", handleMouseDown);
+        window.addEventListener("mouseup", handleMouseUp)
+        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("resize", handleResize);
 
-    handleCloseWindow(event: MouseEvent) {
-        if (event.button !== 0) {
-            return;
-        }
+        return () => {
+            window.removeEventListener("mousedown", handleMouseDown);
+            window.removeEventListener("mouseup", handleMouseUp);
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height]);
 
-        if (!(event.target instanceof HTMLElement)) {
-            return;
-        }
-
-        if (event.target.id !== `#${this.props.ref_id}-WINDOW-CONTROLS-CLOSE`) {
-            return;
-        }
-
-
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    handleResize(_event: Event) {
-        client_width = document.documentElement.clientWidth;
-        client_height = document.documentElement.clientHeight;
-    }
-
-    componentDidMount() {
-        window.addEventListener("mousedown", this.handleMouseDown);
-        window.addEventListener("mouseup", this.handleMouseUp);
-        window.addEventListener("mousemove", this.handleMouseMove);
-        window.addEventListener("resize", this.handleResize);
-        this.onLoad();
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("mousedown", this.handleMouseDown);
-        window.removeEventListener("mouseup", this.handleMouseUp);
-        window.removeEventListener("mousemove", this.handleMouseMove);
-        window.removeEventListener("resize", this.handleResize);
-    }
-
-    render() {
-        return (
-            <div
-                style={{
-                    zIndex: 101,
-                    width: this.props.width,
-                    height: this.props.height,
-                    top: this.state.y,
-                    left: this.state.x
-                }}
-                className={styles.ComputerWindow}
-                data-active={this.props.active}
-            >
-                <div className={styles.WindowControls} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>
-                    <div className={styles.WindowControlsLeft} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>
-                        <img src={this.props.icon_src} alt={this.props.title} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}/>
-                        <p id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>{this.props.title}</p>
-                    </div>
-                    <div className={styles.WindowControlsRight} id={`#${this.props.ref_id}-WINDOW-CONTROLS`}>
-                        <button type="button" id={`#${this.props.ref_id}-WINDOW-CONTROLS-CLOSE`}>X</button>
-                        <button type="button" id={`#${this.props.ref_id}-WINDOW-CONTROLS-MAXIMIZE`}>🗖</button>
-                        <button type="button" id={`#${this.props.ref_id}-WINDOW-CONTROLS-MINIMIZE`}>🗕</button>
-                    </div>
+    return (
+        <div
+            style={{
+                zIndex: 101,
+                width: width,
+                height: height,
+                top: y,
+                left: x,
+            }}
+            className={styles.ComputerWindow}
+            data-active={props.active}
+            ref={ref}
+        >
+            <div className={styles.WindowControls} id={`#${props.ref_id}-WINDOW-CONTROLS`}>
+                <div className={styles.WindowControlsLeft} id={`#${props.ref_id}-WINDOW-CONTROLS`}>
+                    <img src={props.icon_src} alt={props.title} id={`#${props.ref_id}-WINDOW-CONTROLS`} />
+                    <p id={`#${props.ref_id}-WINDOW-CONTROLS`}>{props.title}</p>
                 </div>
-                <div className={styles.WindowBody}>
-                    {this.props.children}
+                <div className={styles.WindowControlsRight} id={`#${props.ref_id}-WINDOW-CONTROLS`}>
+                    <button type="button" id={`#${props.ref_id}-WINDOW-CONTROLS-CLOSE`}>X</button>
+                    <button type="button" id={`#${props.ref_id}-WINDOW-CONTROLS-MAXIMIZE`}>🗖</button>
+                    <button type="button" id={`#${props.ref_id}-WINDOW-CONTROLS-MINIMIZE`}>🗕</button>
                 </div>
             </div>
-        );
-    }
+            <div className={styles.WindowBody}>{props.children}</div>
+        </div>
+    );
 }
