@@ -25,7 +25,7 @@ interface ComputerWindowProps {
 }
 
 export default function ComputerWindow(props: ComputerWindowProps) {
-    const { openWindows, setOpenWindows, activeRefId, setActiveRefId, setActiveWindowName } = useComputer();
+    const { openWindows, setOpenWindows, activeRefId, setActiveRefId, setActiveWindowName, minimizedRefIds, setMinimizedRefIds } = useComputer();
 
     const [moving, setMoving] = useState(false);
     const [x, setX] = useState(0);
@@ -52,6 +52,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
         const handleMouseDown = (event: MouseEvent) => {
             handleFocusWindow(event);
             handleMoveWindow(event);
+            handleMinimizeWindow(event);
         };
 
         const handleMouseUp = (event: MouseEvent) => {
@@ -134,6 +135,25 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             setActiveWindowName("Welcome!");
         };
 
+        const handleMinimizeWindow = (event: MouseEvent) => {
+            if (event.button !== 0) {
+                return;
+            }
+
+            if (!(event.target instanceof HTMLElement)) {
+                return;
+            }
+
+            if (event.target.id !== `#${props.ref_id}-WINDOW-CONTROLS-MINIMIZE`) {
+                return;
+            }
+
+            setMinimizedRefIds([...minimizedRefIds, props.ref_id]);
+
+            console.log(minimizedRefIds);
+
+        }
+
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const handleResize = (_event: Event) => {
             client_width = document.documentElement.clientWidth;
@@ -152,11 +172,9 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("resize", handleResize);
         };
-    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows, setActiveRefId, setActiveWindowName]);
-
-    return (
-        <div
-            style={{
+    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows, setActiveRefId, setActiveWindowName, props.title, setMinimizedRefIds, minimizedRefIds]);
+    return !(minimizedRefIds.includes(props.ref_id)) ? (
+        <div style={{
                 zIndex: (Date.now() / 200 - START_TIME) + 20000,
                 width: width,
                 height: height,
@@ -182,5 +200,5 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             </div>
             <div className={styles.WindowBody}>{props.children}</div>
         </div>
-    );
+    ) : (<> </>);
 }

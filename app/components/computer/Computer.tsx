@@ -19,6 +19,8 @@ interface ComputerContextType {
     setActiveRefId: (id: string) => void;
     activeWindowName: string;
     setActiveWindowName: (name: string) => void;
+    minimizedRefIds: string[];
+    setMinimizedRefIds: (ids: string[]) => void;
 }
 
 export const ComputerContext = createContext<ComputerContextType | undefined>(undefined);
@@ -29,9 +31,10 @@ export function ComputerProvider({ children }: { children: React.ReactNode }) {
     const [openWindows, setOpenWindows] = useState<React.ReactNode[]>([]);
     const [activeRefId, setActiveRefId] = useState<string>("0");
     const [activeWindowName, setActiveWindowName] = useState<string>("Welcome");
+    const [minimizedRefIds, setMinimizedRefIds] = useState<string[]>([]);
 
     return (
-        <ComputerContext.Provider value={{ open, setOpen, on, setOn, openWindows, setOpenWindows, activeRefId, setActiveRefId, activeWindowName, setActiveWindowName }}>
+        <ComputerContext.Provider value={{ open, setOpen, on, setOn, openWindows, setOpenWindows, activeRefId, setActiveRefId, activeWindowName, setActiveWindowName, minimizedRefIds, setMinimizedRefIds }}>
             {children}
         </ComputerContext.Provider>
     );

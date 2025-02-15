@@ -90,7 +90,7 @@ function TaskBarWindow(props: {internal_app_code: string, ref_id: string}) {
     const appName = internal_name_to_displayed_name(props.internal_app_code);
     const appImg = internal_name_to_app_icon(props.internal_app_code);
 
-    const { setActiveRefId, setActiveWindowName } = useComputer();
+    const { setActiveRefId, setActiveWindowName, minimizedRefIds, setMinimizedRefIds } = useComputer();
 
     useEffect(() => {
         const handle_click = (event: MouseEvent) => {
@@ -99,11 +99,15 @@ function TaskBarWindow(props: {internal_app_code: string, ref_id: string}) {
             const target = event.target as Node;
 
             if (!ref.current.contains(target)) {
-                return;
+                {
+                    console.log(103);
+                    return
+                };
             }
 
             setActiveRefId(props.ref_id);
             setActiveWindowName(internal_name_to_displayed_name(props.internal_app_code));
+            setMinimizedRefIds(minimizedRefIds.filter(id => id !== props.ref_id));
 
             const real_item = document.querySelector(`[data-refid="${props.ref_id}"]`);
             if (!real_item) return;
@@ -121,11 +125,11 @@ function TaskBarWindow(props: {internal_app_code: string, ref_id: string}) {
         return () => {
             window.removeEventListener("click", handle_click);
         }
-    })
+    }, [minimizedRefIds, props.internal_app_code, props.ref_id, setActiveRefId, setActiveWindowName, setMinimizedRefIds])
 
     return (
         <div className={`${styles.taskbarItem} ${styles.taskbarWindow}`} ref={ref}>
-            <img src={appImg} />
+            <img src={appImg}  alt={appName}/>
             <p>{appName}</p>
         </div>
     );
