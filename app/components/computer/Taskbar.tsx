@@ -2,6 +2,7 @@ import styles from "@/app/components/computer/Taskbar.module.css";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import StartMenu from "@/app/components/computer/StartMenu";
+import {useComputer} from "@/app/components/computer/Computer";
 
 function TaskBarTime() {
     const [formattedTime, setFormattedTime] = useState(() =>
@@ -71,11 +72,13 @@ class TaskBarStart extends React.Component<TaskBarStartProps, { on: boolean }> {
     }
 }
 
-function TaskBarStatus(props: { data: string }) {
+function TaskBarStatus() {
+    const {activeWindowName} = useComputer();
+
     return (
         <div className={`${styles.taskbarItem} ${styles.taskbarStatusParent}`}>
             <div className={styles.taskbarStatus}>
-                <p>{props.data}</p>
+                <p>{activeWindowName}</p>
             </div>
         </div>
     );
@@ -90,7 +93,7 @@ export default function TaskBar() {
             <div className={styles.taskbar}>
                 <div className={styles.taskbarLeft}>
                     <TaskBarStart setter={setStartMenu} />
-                    <TaskBarStatus data={"Welcome"}/>
+                    <TaskBarStatus />
                 </div>
 
                 <div className={styles.taskbarRight}>

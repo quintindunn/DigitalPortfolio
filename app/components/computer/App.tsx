@@ -1,6 +1,6 @@
 import styles from "@/app/components/computer/App.module.css"
 import React, {useRef} from "react";
-import app_mapper from "@/app/components/computer/apps/app_mapper";
+import app_mapper, {internal_name_to_displayed_name} from "@/app/components/computer/apps/app_mapper";
 import {useComputer} from "@/app/components/computer/Computer";
 
 interface AppProps {
@@ -14,7 +14,7 @@ interface AppProps {
 
 export default function App(props: AppProps) {
     const ref = useRef<HTMLDivElement>(null);
-    const { openWindows, setOpenWindows, setActiveRefId } = useComputer();
+    const { openWindows, setOpenWindows, setActiveRefId, setActiveWindowName } = useComputer();
 
     React.useEffect(() => {
         const handleClick = (event: MouseEvent) => {
@@ -27,6 +27,8 @@ export default function App(props: AppProps) {
             }
 
             const WindowType = app_mapper(props.internal_app_code);
+            const WindowName = internal_name_to_displayed_name(props.internal_app_code);
+            setActiveWindowName(WindowName);
 
             if (WindowType === null) {
                 return;

@@ -25,7 +25,7 @@ interface ComputerWindowProps {
 }
 
 export default function ComputerWindow(props: ComputerWindowProps) {
-    const { openWindows, setOpenWindows, activeRefId, setActiveRefId } = useComputer();
+    const { openWindows, setOpenWindows, activeRefId, setActiveRefId, setActiveWindowName } = useComputer();
 
     const [moving, setMoving] = useState(false);
     const [x, setX] = useState(0);
@@ -112,6 +112,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
                 setActiveRefId(props.ref_id);
                 ref.current.style.zIndex = `${((Date.now() / 200) - START_TIME) + 20000}`;
             }
+            setActiveWindowName(props.title);
         };
 
         const handleCloseWindow = (event: MouseEvent) => {
@@ -130,6 +131,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             // @ts-expect-error - It's just being stupid
             const updatedWindows = openWindows.filter((window) => window.props.ref_id !== props.ref_id);
             setOpenWindows(updatedWindows);
+            setActiveWindowName("Welcome!");
         };
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -150,7 +152,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("resize", handleResize);
         };
-    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows, setActiveRefId]);
+    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows, setActiveRefId, setActiveWindowName]);
 
     return (
         <div
