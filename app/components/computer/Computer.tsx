@@ -51,13 +51,10 @@ export function useComputer() {
 function Apps() {
     return (<>
         <App internal_app_code={"mycomputer"} name={"My Computer"} img_src={"/computer/apps/mycomputer.png"} />
-        <App internal_app_code={"resume"} name={"Resume"} img_src={"/computer/apps/document.png"} />
         <App internal_app_code={"networkneighborhood"} name={"Network Neighborhood"} img_src={"/computer/apps/networkneighborhood.png"} />
-        <App internal_app_code={"inbox"} name={"Inbox"} img_src={"/computer/apps/inbox.png"} />
-        <App internal_app_code={"recyclebin"} name={"Recycle Bin"} img_src={"/computer/apps/recyclebin.png"} />
-        <App internal_app_code={"themicrosoftnetwork"} name={"The Microsoft Network"} img_src={"/computer/apps/themicrosoftnetwork.png"} />
         <App internal_app_code={"mybriefcase"} name={"My Briefcase"} img_src={"/computer/apps/mybriefcase.png"} />
-        <App internal_app_code={"python3"} name={"Python3"} img_src={"/skills/python.png"} />
+        <App internal_app_code={"resume"} name={"Resume"} img_src={"/computer/apps/document.png"} />
+        <App internal_app_code={"recyclebin"} name={"Recycle Bin"} img_src={"/computer/apps/recyclebin.png"} />
     </>);
 }
 
