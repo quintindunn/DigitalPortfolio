@@ -20,7 +20,7 @@ export default class Resume extends React.Component<ResumeProps, ResumeState> {
     render() {
         return (
             <>
-                <ComputerWindow ref_id={this.props.ref_id} title={"My Resume"} icon_src={"/computer/apps/resume.png"} width={"45vw"} height={"50vh"}>
+                <ComputerWindow ref_id={this.props.ref_id} title={"My Resume"} icon_src={"/computer/apps/document.png"} width={"45vw"} height={"50vh"}>
                     <div className={styles.Body}>
                         <div className={styles.resume}>
                             <div className={`${styles.resumeHeader} text-center`}>
