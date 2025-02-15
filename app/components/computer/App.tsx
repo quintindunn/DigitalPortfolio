@@ -12,7 +12,7 @@ interface AppProps {
 
 export default function App(props: AppProps) {
     const ref = useRef<HTMLDivElement>(null);
-    const { openWindows, setOpenWindows } = useComputer();
+    const { openWindows, setOpenWindows, setActiveRefId } = useComputer();
 
     React.useEffect(() => {
         const handleClick = (event: MouseEvent) => {
@@ -30,7 +30,9 @@ export default function App(props: AppProps) {
                 return;
             }
 
-            const newWindow = React.createElement(WindowType, { ref_id: `${Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000}` });
+            const new_ref_id = `${Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000}`;
+            const newWindow = React.createElement(WindowType, { ref_id: new_ref_id });
+            setActiveRefId(new_ref_id);
             setOpenWindows([...openWindows, newWindow]);
         };
 

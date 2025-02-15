@@ -7,6 +7,7 @@ import {useComputer} from "@/app/components/computer/Computer";
 const COMPUTER_WIDTH_VW: number = 92.5;
 const COMPUTER_HEIGHT_VW: number = 92.5;
 const TASKBAR_HEIGHT_VW: number = 4;
+const START_TIME = Date.now() / 200;
 let client_width: number = 0;
 let client_height: number = 0;
 
@@ -25,7 +26,7 @@ interface ComputerWindowProps {
 }
 
 export default function ComputerWindow(props: ComputerWindowProps) {
-    const { openWindows, setOpenWindows } = useComputer();
+    const { openWindows, setOpenWindows, activeRefId, setActiveRefId } = useComputer();
 
     const [moving, setMoving] = useState(false);
     const [x, setX] = useState(0);
@@ -50,6 +51,7 @@ export default function ComputerWindow(props: ComputerWindowProps) {
         };
 
         const handleMouseDown = (event: MouseEvent) => {
+            handleFocusWindow(event);
             handleMoveWindow(event);
         };
 
@@ -106,6 +108,13 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             }
         };
 
+        const handleFocusWindow = (event: MouseEvent) => {
+            if (event.target && ref.current && ref.current.contains(event.target as HTMLElement)) {
+                setActiveRefId(props.ref_id);
+                ref.current.style.zIndex = `${((Date.now() / 200) - START_TIME) + 20000}`;
+            }
+        };
+
         const handleCloseWindow = (event: MouseEvent) => {
             if (event.button !== 0) {
                 return;
@@ -142,19 +151,19 @@ export default function ComputerWindow(props: ComputerWindowProps) {
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("resize", handleResize);
         };
-    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows]);
+    }, [width, height, moving, x, y, moveStartX, moveStartY, props.ref_id, props.width, props.height, openWindows, setOpenWindows, setActiveRefId]);
 
     return (
         <div
             style={{
-                zIndex: 101,
+                zIndex: (Date.now() / 200 - START_TIME) + 20000,
                 width: width,
                 height: height,
                 top: y,
                 left: x,
             }}
             className={styles.ComputerWindow}
-            data-active={props.active}
+            data-active={props.ref_id === activeRefId}
             ref={ref}
         >
             <div className={styles.WindowControls} id={`#${props.ref_id}-WINDOW-CONTROLS`}>
