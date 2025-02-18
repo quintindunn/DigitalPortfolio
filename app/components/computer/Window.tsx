@@ -69,6 +69,8 @@ export default function ComputerWindow(props: ComputerWindowProps) {
         const handleMouseMove = (event: MouseEvent) => {
             const computer = document.getElementById("computer");
 
+            if (!ref.current) return;
+
             if (!computer) return;
             const computerBoundingRect = computer.getBoundingClientRect();
 
@@ -79,11 +81,11 @@ export default function ComputerWindow(props: ComputerWindowProps) {
                 let newX = event.clientX - moveStartX;
                 let newY = event.clientY - moveStartY;
 
-                const xLimitRight = computerBoundingRect.right - vpToPx((100 - COMPUTER_WIDTH_VW) / 2 + +props.width.slice(0, props.width.length - 2), client_width);
+                const xLimitRight = computerBoundingRect.right - vpToPx((100 - COMPUTER_WIDTH_VW) / 2, client_width) - ref.current.clientWidth - 4;
                 const xLimitLeft = computerBoundingRect.left - vpToPx((100 - COMPUTER_WIDTH_VW) / 2, client_width);
 
                 const yLimitUpper = computerBoundingRect.top - vpToPx((100 - COMPUTER_HEIGHT_VW) / 2, client_height);
-                const yLimitBottom = computerBoundingRect.bottom - vpToPx((100 - COMPUTER_HEIGHT_VW) / 2 + +props.height.slice(0, props.height.length - 2) + TASKBAR_HEIGHT_VW, client_height);
+                const yLimitBottom = computerBoundingRect.bottom - vpToPx((100 - COMPUTER_HEIGHT_VW) / 2 + TASKBAR_HEIGHT_VW, client_height) - ref.current.clientHeight - 4;
 
                 if (newX < xLimitLeft) {
                     newX = xLimitLeft;
