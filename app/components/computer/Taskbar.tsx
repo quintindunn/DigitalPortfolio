@@ -36,29 +36,21 @@ function TaskBarTime() {
 }
 
 interface TaskBarStartProps {
-    setter: React.Dispatch<React.SetStateAction<boolean>>;
+    setter: (state: boolean) => void;
 }
 
 class TaskBarStart extends React.Component<TaskBarStartProps, { on: boolean }> {
-    private setter: React.Dispatch<React.SetStateAction<boolean>>;
+    private readonly setter: (state: boolean) => void;
     constructor(props: TaskBarStartProps) {
         super(props);
         this.state = {on: false};
         this.setter = props.setter;
 
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick() {
-        this.setter(!this.state.on);
-        this.setState((prevState: { on: boolean }) => ({
-            on: !prevState.on
-        }));
     }
 
     render() {
         return (
-            <div className={styles.taskbarItem} onClick={this.handleClick}>
+            <div className={styles.taskbarItem} id={"startmenu-btn"}>
                 <div className={styles.taskbarStart}>
                     <Image
                         src={"/computer/start-icon.png"}
@@ -142,8 +134,7 @@ function window_to_ref_id(window: React.ReactNode) {
 }
 
 export default function TaskBar() {
-    const { openWindows } = useComputer();
-    const [startMenuState, setStartMenu] = React.useState<boolean>(false);
+    const { openWindows, startMenuState, setStartMenu } = useComputer();
 
     const tbWindows = (
         <>
