@@ -43,6 +43,8 @@ export default class MyComputer extends React.Component<MyComputerProps, MyCompu
                     </div>
                     <div className={styles.Body}>
                         <App color={"black"} name={"Resume"} id={"resume"} internal_app_code={"resume"} img_src={"/computer/apps/document.png"} />
+                        <App color={"black"} name={"Resume"} id={"resume"} internal_app_code={"resume"} img_src={"/computer/apps/document.png"} />
+                        <App color={"black"} name={"Resume"} id={"resume"} internal_app_code={"resume"} img_src={"/computer/apps/document.png"} />
                     </div>
                 </ComputerWindow>
             </>
