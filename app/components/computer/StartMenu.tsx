@@ -20,7 +20,7 @@ function ShutDownMenuItem(props: {name: string, img_src: string}) {
 
 export default function StartMenu() {
     return (
-        <div className={styles.StartMenu}>
+        <div className={styles.StartMenu} id={"startmenu"}>
             <div className={styles.StartMenuSplash}>
                 <p>Windows</p>
                 <p>95</p>
