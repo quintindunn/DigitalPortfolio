@@ -32,8 +32,11 @@ export default class Resume extends React.Component<ResumeProps, ResumeState> {
                             <div className={styles.resumeSubheading}>
                                 <h2 className={"font-bold italic"}>Education</h2>
                                 <hr />
+                                <p className={"font-bold"}>Suny Oswego</p>
+                                <p>Bachelor of Science - Software Engineering</p>
+                                <p>Starting August 2025</p>
                                 <p className={"font-bold"}>Westhampton Beach High School</p>
-                                <p>Senior, Graduating June 2025</p>
+                                <p>Graduated June 2025</p>
 
                                 <p className={"pt-4 font-bold"}>Notable Classes:</p>
                                 <ul className={styles.list}>
