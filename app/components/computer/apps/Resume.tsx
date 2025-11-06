@@ -50,7 +50,7 @@ export default class Resume extends React.Component<ResumeProps, ResumeState> {
                             <div className={styles.resumeSubheading}>
                                 <h2 className={"font-bold italic pt-4"}>EXPERIENCE</h2>
                                 <hr />
-                                <p><span className={"font-bold"}>Robotics Team Developer | Westhampton Beach High School:</span> September 2022 - June 2025</p>
+                                <p><span className={"font-bold"}>Robotics Team Developer:</span> September 2022 - June 2025</p>
                                 <ul className={styles.list}>
                                     <li>Helped design and program a robot to compete in the 2023, 2024 First Robotics Competition.</li>
                                     <li>Created an interface for our team to use to scout other teams to easily determine their strengths, and weaknesses.</li>
