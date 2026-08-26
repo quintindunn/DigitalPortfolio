@@ -45,7 +45,7 @@ const en = {
             description: "An implementation of an algorithm to convert an input image into thread art"
         },
         mosart: {
-            name: "Mosart (closed source)",
+            name: "Mosart",
             description: "A web application to create mosaic artwork out of a collage of pictures"
         }
     },
